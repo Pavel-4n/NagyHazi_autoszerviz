@@ -8,7 +8,7 @@
 
 
 int main() {
-
-	printf("hello world\n");
+	int one = 1;
+	printf("hello world %d\n",one);
 	return 0;
 }
