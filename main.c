@@ -10,5 +10,6 @@
 int main() {
 	int one = 1;
 	printf("hello world %d\n",one);
+	printf("hello world testing testing vibe code ingbnbn%d\n",one);
 	return 0;
 }
