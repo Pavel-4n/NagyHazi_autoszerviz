@@ -1,6 +1,6 @@
 #include "car.h"
 #include "debugmalloc.h"
-#include "functions.c"
+#include "functions.h"
 #include "javitas.h"
 #include "structs.h"
 #include "ugyfel.h"
