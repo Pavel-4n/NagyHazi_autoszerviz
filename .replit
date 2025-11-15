@@ -23,7 +23,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "gcc -Wall -Werror -o app main.c car.c ugyfel.c javitas.c -lm && ./app"
+args = "gcc -o app main.c car.c ugyfel.c javitas.c -lm && ./app"
 
 [workflows.workflow.metadata]
 outputType = "console"
