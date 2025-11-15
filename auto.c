@@ -1,7 +1,7 @@
-#include "debugmalloc.h"
 #include <stdio.h>
 #include <string.h>
-#include "car.h"
+#include "debugmalloc.h"
+#include "auto.h"
 
 void autoHozzaad(){
   return;

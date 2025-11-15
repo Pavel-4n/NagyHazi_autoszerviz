@@ -1,5 +1,5 @@
-#ifndef CAR_H
-#define CAR_H
+#ifndef AUTO_H
+#define AUTO_H
 #include "structs.h"
 
 
