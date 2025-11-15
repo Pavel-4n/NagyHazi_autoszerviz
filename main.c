@@ -1,12 +1,18 @@
 #include "auto.h"
 #include "debugmalloc.h"
-#include "functions.c"
+#include "functions.h"
 #include "javitas.h"
 #include "structs.h"
 #include "ugyfel.h"
 #include <stdio.h>
 
 int main() {
+	// Adatok beolvasása
+	int ugyfel_db = 0, auto_db = 0, javitas_db = 0;
+	
+	Ugyfel *ugyfelek = betoltUgyfelek("data/ugyfelek.txt", &ugyfel_db);
+	Auto *autok = betoltAutok("data/autok.txt", &auto_db);
+	Javitas *javitasok = betoltJavitasok("data/javitasok.txt", &javitas_db);
 
 	int userInput = 0;
 	printf("                 _                               _     \n");
@@ -23,10 +29,25 @@ int main() {
 	printf("6. Auto torlese\n");
 	printf("7. Auto szerviz tortenet\n");
 	printf("8. Lejaro vizsgaju autok listazasa\n");
-	printf("9. Kilepes\n");
+	printf("9. Adatok kiirasa\n");
+	printf("10. Kilepes\n");
 	printf("Valassz egy menupontot: \n");
 	scanf("%d" , &userInput);	
-	printf("%d",userInput);
+	
+	switch(userInput) {
+		case 9:
+			nyomtatUgyfeleket(ugyfelek, ugyfel_db);
+			nyomtatAutokat(autok, auto_db);
+			nyomtatJavitasokat(javitasok, javitas_db);
+			break;
+		default:
+			printf("Valasztott menu: %d\n", userInput);
+	}
+	
+	// Memória felszabadítása
+	free(ugyfelek);
+	free(autok);
+	free(javitasok);
 	
   return 0;
 }
