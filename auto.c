@@ -50,22 +50,22 @@ void nyomtatAutokat(Auto *autok, int db) {
     printf("===========================\n\n");
 }
 
-void autoHozzaad(){
+void autoHozzaad(Auto **autok, int *db, const char *rendSz, const char *model, const char *vizsgaErv, const char *tulajNev){
   return;
 }
 
-void autoKeres(){
+int autoKeres(Auto *autok, int db, const char *rendSz){
+  return -1;
+}
+
+void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db){
   return;
 }
 
-void autoTorles(){
+void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javitas_db){
   return;
 }
 
-void autoSzervizTortenet(){
-  
-}
-
-void lejaroVizsgak(){
+void lejaroVizsgak(Auto *autok, int auto_db){
   return;
 }

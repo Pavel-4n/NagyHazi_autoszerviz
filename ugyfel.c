@@ -48,10 +48,10 @@ void nyomtatUgyfeleket(Ugyfel *ugyfelek, int db) {
     printf("==============================\n\n");
 }
 
-void ugyfelHozzaad(){
+void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const char *nev, const char *email, const char *telSz){
   return;
 }
 
-void ugyfelKeres(){
-  return;
+int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev){
+  return -1;
 }

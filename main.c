@@ -36,7 +36,7 @@ int main() {
 	
 	switch(userInput) {
 		case 1: //Ugyfel hozzadasa
-
+			ugyfelHozzaad();
 			break;
 		case 2: //Auto hozzaadasa
 
