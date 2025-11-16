@@ -3,29 +3,29 @@
 #include "structs.h"
 
 /**
- * ugyfeleket beolvas egy fajlbol es tarrol oket memoriaban
- * @param filename - a fajl neve
- * @param db - az ugyfelek szama (output)
+ * ugyfeleket olvas be az ugyfelek.txt filebol es eltarolja a memoriaban
+ * @param filename - fajl neve jelen esetben a ugyfelek.txt
+ * @param db - ugyfelek szama
  * @return pointer az ugyfelek tombre
  */
 Ugyfel* betoltUgyfelek(const char* filename, int *db);
 
 /**
- * uj ugyfélt ad hozza a tombjehez
- * @param ugyfelek - az ugyfelek tomje (pointer)
- * @param db - az ugyfelek szama (output)
- * @param nev - az uj ugyfel neve
- * @param email - az uj ugyfel emailje
- * @param telSz - az uj ugyfel telefonszama
+ * uj ugyfelet ad hozza az ugyfelek tombhoz
+ * @param ugyfelek - ugyfelek tomb
+ * @param db - ugyfelek szama
+ * @param nev - uj ugyfel neve
+ * @param email - uj ugyfel emailje
+ * @param telSz - uj ugyfel telefonszama
  */
 void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const char *nev, const char *email, const char *telSz);
 
 /**
  * ugyfelet keres a neve szerint
- * @param ugyfelek - az ugyfelek tomje
- * @param db - az ugyfelek szama
- * @param nev - a keresendo ugyfel neve
- * @return az ugyfel indexe vagy -1 ha nem talalhato
+ * @param ugyfelek - ugyfelek tomb
+ * @param db - ugyfelek szama
+ * @param nev - keresendo ugyfel neve
+ * @return ugyfel indexe vagy -1 ha nem talalhato
  */
 int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev);
 

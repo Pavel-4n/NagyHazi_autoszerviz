@@ -7,14 +7,14 @@
 #include <stdio.h>
 
 int main() {
-	// Adatok beolvasása
+	// adatok beolvasasa, tomb meret valtozok inicializalasa
 	int ugyfel_db = 0, auto_db = 0, javitas_db = 0;
 	
 	Ugyfel *ugyfelek = betoltUgyfelek("data/ugyfelek.txt", &ugyfel_db);
 	Auto *autok = betoltAutok("data/autok.txt", &auto_db);
 	Javitas *javitasok = betoltJavitasok("data/javitasok.txt", &javitas_db);
 
-	int userInput = 0;
+	int menuVal = 0;
 	printf("                 _                               _     \n");
 	printf("     /\\        | |                             (_)    \n");
 	printf("    /  \\  _   _| |_ ___  ___ _______ _ ____   ___ ____\n");
@@ -31,10 +31,10 @@ int main() {
 	printf("8. Lejaro vizsgaju autok listazasa\n");
 	printf("9. Kilepes\n");
 	printf("Valassz egy menupontot: \n");
-	scanf("%d" , &userInput);	
+	scanf("%d" , &menuVal);	
 	
-	switch(userInput) {
-		case 1: //Ugyfel hozzadasa
+	switch(menuVal) {
+		case 1: { //Ugyfel hozzadasa
 			char nev[100];
 			char email[100];
 			char telSz[50];
@@ -50,6 +50,7 @@ int main() {
 
 			ugyfelHozzaad(&ugyfelek, &ugyfel_db, nev, email, telSz);
 			break;
+		}
 		case 2: { //Auto hozzaadasa
 			char rendSz[100];
 			char model[100];
@@ -121,10 +122,10 @@ int main() {
 			break;
 		}
 		default:
-			printf("Valasztott menu: %d\n", userInput);
+			printf("Valasztott menu: %d\n", menuVal);
 	}
 	
-	// Memória felszabadítása
+	// felszabaditasok
 	free(ugyfelek);
 	free(autok);
 	free(javitasok);

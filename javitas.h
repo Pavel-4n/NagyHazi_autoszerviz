@@ -3,21 +3,21 @@
 #include "structs.h"
 
 /**
- * javitasokat beolvas egy fajlbol es tarrol oket memoriaban
- * @param filename - a fajl neve
- * @param db - a javitasok szama (output)
- * @return pointer a javitasok tombre
+ * javitasokat olvas be az javitasok.txt filebol es eltarolja a memoriaban
+ * @param filename - fajl neve jelen esetben a javitasok.txt
+ * @param db - avitasok szama 
+ * @return pointerjavitasok tombre
  */
 Javitas* betoltJavitasok(const char* filename, int *db);
 
 /**
- * uj javitest ad hozza a tombjehez
- * @param javitasok - a javitasok tomje (pointer)
- * @param db - a javitasok szama (output)
- * @param rendSz - az auto rendszama
- * @param tipus - a javitest tipusa
- * @param datum - a javitas datuma
- * @param ar - a javitas ara
+ * uj javitast ad hozza a javitasok tombhoz
+ * @param javitasok - javitasok tomb
+ * @param db - javitasok szama
+ * @param rendSz - javitando auto rendszama
+ * @param tipus - javitest tipusa
+ * @param datum - javitas datuma
+ * @param ar - javitas ara
  */
 void javitasHozzaad(Javitas **javitasok, int *db, const char *rendSz, const char *tipus, const char *datum, int ar);
 

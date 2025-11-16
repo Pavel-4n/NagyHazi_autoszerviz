@@ -3,35 +3,38 @@
 #include <string.h>
 #include "javitas.h"
 
-// Javítások beolvasása a fájlból
+/**
+ * Javítások beolvasása a fájlból (javitasok.txt)
+ */
 Javitas* betoltJavitasok(const char* filename, int *db) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
-        perror("betoltJavitasok: fajl megnyitasa sikertelen");
+        perror("fajl megnyitasa sikertelen");
         *db = 0;
         return NULL;
     }
     
-    Javitas *javitasok = (Javitas*)malloc(100 * sizeof(Javitas));
-    if (javitasok == NULL) {
-        fprintf(stderr, "betoltJavitasok: memoria foglalasa sikertelen\n");
-        fclose(fp);
-        return NULL;
-    }
-    
+    Javitas *javitasok = NULL;
     *db = 0;
     char line[256];
     
-    while (fgets(line, sizeof(line), fp) != NULL && *db < 100) {
+    while (fgets(line, sizeof(line), fp) != NULL) {
+        Javitas *temp = (Javitas*)realloc(javitasok, (*db + 1) * sizeof(Javitas));
+        if (temp == NULL) {
+            printf("memoria foglalasa sikertelen\n");
+            free(javitasok);
+            fclose(fp);
+            return NULL;
+        }
+        javitasok = temp;
+        
         line[strcspn(line, "\n")] = 0;
-        sscanf(line, "%15[^;];%63[^;];%15[^;];%d",
-               javitasok[*db].rendSz,
-               javitasok[*db].tipus,
-               javitasok[*db].datum,
-               &javitasok[*db].ar);
+        int ar_temp;
+        sscanf(line, "%[^;];%[^;];%[^;];%d", javitasok[*db].rendSz, javitasok[*db].tipus, javitasok[*db].datum, &ar_temp);
+        javitasok[*db].ar = ar_temp;
+        
         (*db)++;
     }
-    
     fclose(fp);
     return javitasok;
 }
