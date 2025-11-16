@@ -5,25 +5,25 @@
 
 // Ügyfelek beolvasása a fájlból
 Ugyfel* betoltUgyfelek(const char* filename, int *db) {
-    FILE *f = fopen(filename, "r");
-    if (!f) {
-        printf("Hiba: Nem lehet megnyitni az %s fajlt!\n", filename);
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL) {
+        perror("betoltUgyfelek: fajl megnyitasa sikertelen");
         *db = 0;
         return NULL;
     }
     
     Ugyfel *ugyfelek = (Ugyfel*)malloc(100 * sizeof(Ugyfel));
-    if (!ugyfelek) {
-        printf("Hiba: Nincs eleg memoria!\n");
-        fclose(f);
+    if (ugyfelek == NULL) {
+        fprintf(stderr, "betoltUgyfelek: memoria foglalasa sikertelen\n");
+        fclose(fp);
         return NULL;
     }
     
     *db = 0;
     char line[256];
     
-    while (fgets(line, sizeof(line), f) && *db < 100) {
-        line[strcspn(line, "\n")] = 0;  // newline eltávolítása
+    while (fgets(line, sizeof(line), fp) != NULL && *db < 100) {
+        line[strcspn(line, "\n")] = 0;
         sscanf(line, "%63[^;];%63[^;];%31s", 
                ugyfelek[*db].nev, 
                ugyfelek[*db].email, 
@@ -31,21 +31,8 @@ Ugyfel* betoltUgyfelek(const char* filename, int *db) {
         (*db)++;
     }
     
-    fclose(f);
+    fclose(fp);
     return ugyfelek;
-}
-
-// Ügyfelek nyomtatása
-void nyomtatUgyfeleket(Ugyfel *ugyfelek, int db) {
-    if (!ugyfelek || db == 0) {
-        printf("Nincsenek ugyfelek!\n");
-        return;
-    }
-    printf("\n========== UGYFELEK ==========\n");
-    for (int i = 0; i < db; i++) {
-        printf("%d. %s | %s | %s\n", i+1, ugyfelek[i].nev, ugyfelek[i].email, ugyfelek[i].telSz);
-    }
-    printf("==============================\n\n");
 }
 
 void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const char *nev, const char *email, const char *telSz){
