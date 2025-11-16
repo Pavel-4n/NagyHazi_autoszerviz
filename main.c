@@ -35,10 +35,38 @@ int main() {
 	scanf("%d" , &userInput);	
 	
 	switch(userInput) {
-		case 9:
+		case 1: //Ugyfel hozzadasa
+
+			break;
+		case 2: //Auto hozzaadasa
+
+			break;
+		case 3: //Javitas hozzaadasa
+
+			break;
+		case 4: //Kereses ugyfel neve szerint
+
+			break;
+		case 5: //Kereses auto rendszam szerint
+
+			break;
+		case 6: //Auto torlese
+
+			break;
+		case 7: //Auto szerviz tortenet
+
+			break;
+		case 8: //Lejaro vizsgaju autok listazasa
+
+			break;
+		case 9: //Adatok kiirasa
+
 			nyomtatUgyfeleket(ugyfelek, ugyfel_db);
 			nyomtatAutokat(autok, auto_db);
 			nyomtatJavitasokat(javitasok, javitas_db);
+			break;
+		case 10: //Kilepes
+
 			break;
 		default:
 			printf("Valasztott menu: %d\n", userInput);
