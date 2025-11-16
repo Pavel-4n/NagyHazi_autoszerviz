@@ -50,6 +50,6 @@ void nyomtatJavitasokat(Javitas *javitasok, int db) {
     printf("================================\n\n");
 }
 
-void javitasHozzaad(Javitas **javitasok, int *rendSz, const char *tipus, const char *datum, const int *ar){
+void javitasHozzaad(Javitas **javitasok, int *db, const char *rendSz, const char *tipus, const char *datum, int ar){
   return;
 }
