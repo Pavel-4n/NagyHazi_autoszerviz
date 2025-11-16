@@ -3,9 +3,7 @@
 #include "debugmalloc.h"
 #include "auto.h"
 
-/**
- * Autók beolvasása a fájlból (autok.txt)
- */
+
 Auto* betoltAutok(const char* filename, int *db) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {

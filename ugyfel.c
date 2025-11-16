@@ -3,9 +3,7 @@
 #include <string.h>
 #include "ugyfel.h"
 
-/**
- * Ügyfelek beolvasása a fájlból (ugyfelek.txt)
- */
+
 Ugyfel* betoltUgyfelek(const char* filename, int *db) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {

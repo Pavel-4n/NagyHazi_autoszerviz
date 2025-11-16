@@ -3,9 +3,6 @@
 #include <string.h>
 #include "javitas.h"
 
-/**
- * Javítások beolvasása a fájlból (javitasok.txt)
- */
 Javitas* betoltJavitasok(const char* filename, int *db) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
