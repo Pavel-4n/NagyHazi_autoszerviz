@@ -5,7 +5,7 @@
 /**
  * autokat olvas be az autok.txt filebol es eltarolja a memoriaban
  * @param filename - autok.txt 
- * @param db - az autok szama
+ * @param db - autok szama
  * @return autok tombre mutato pointer
  */
 Auto* betoltAutok(const char* filename, int *db);
@@ -20,10 +20,10 @@ void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto);
 
 /**
  * autot keres egy felhasznalo altal megadott rendszam szerint
- * @param autok - az autok tomje
- * @param db - az autok szama 
- * @param rendSz - a keresendo auto rendszama
- * @return a keresett auto indexe vagy -1 ha nem volt sikeres a kereses
+ * @param autok - autok tomb
+ * @param db - autok szama 
+ * @param rendSz - keresendo auto rendszama
+ * @return keresett auto indexe vagy -1 ha nem volt sikeres a kereses
  */
 int autoKeres(Auto *autok, int db, const char *rendSz);
 

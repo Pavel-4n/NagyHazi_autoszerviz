@@ -3,10 +3,10 @@
 #include "structs.h"
 
 /**
- * javitasokat beolvas egy fajlbol es tarrol oket memoriaban
- * @param filename - a fajl neve
- * @param db - a javitasok szama (output)
- * @return pointer a javitasok tombre
+ * javitasokat olvas be az javitasok.txt filebol es eltarolja a memoriaban
+ * @param filename - fajl neve jelen esetben a javitasok.txt
+ * @param db - avitasok szama 
+ * @return pointerjavitasok tombre
  */
 Javitas* betoltJavitasok(const char* filename, int *db);
 
