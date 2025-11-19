@@ -101,6 +101,11 @@ void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel){
   return;
 }
 
-int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev){
-  return -1;
+int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev) {
+    for (int i = 0; i < db; i++) {
+        if (strcmp(ugyfelek[i].nev, nev) == 0) {
+            return i;
+        }
+    }
+    return -1;
 }

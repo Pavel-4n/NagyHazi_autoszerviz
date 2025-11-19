@@ -39,7 +39,12 @@ void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto){
 }
 
 int autoKeres(Auto *autok, int db, const char *rendSz){
-  return -1;
+    for (int i = 0; i < db; i++) {
+        if (strcmp(autok[i].rendSz, rendSz) == 0) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db, const char *rendSz){

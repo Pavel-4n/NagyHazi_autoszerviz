@@ -117,15 +117,44 @@ int main() {
 			break;
 		}
 		case 4: { //Kereses ugyfel neve szerint
-			char keresesNev[100];
-			printf("keresendo ugyfel neve: ");
-			scanf(" %99[^\n]", keresesNev);
-			break;
+				char keresesNev[100];
+
+				printf("keresendo ugyfel neve: ");
+				scanf(" %99[^\n]", keresesNev);
+
+				int index = ugyfelKeres(ugyfelek, ugyfel_db, keresesNev);
+
+				if (index == -1) {
+						printf("Nincs ilyen nevu ugyfel!\n");
+				} else {
+						printf("\nTalalat:\n");
+						printf("Nev  : %s\n", ugyfelek[index].nev);
+						printf("Email: %s\n", ugyfelek[index].email);
+						printf("Tel  : %s\n", ugyfelek[index].telSz);
+						printf("\n\n");
+				}
+
+				break;
 		}
+
 		case 5: { //Kereses auto rendszam szerint
 			char keresesRendSz[50];
+
 			printf("keresendo auto rendszama: ");
-			scanf(" %49s", keresesRendSz);
+			scanf(" %99[^\n]", keresesRendSz);
+
+			int index = autoKeres(autok, auto_db, keresesRendSz);
+
+			if (index == -1) {
+					printf("Nincs ilyen rendszamu auto!\n");
+			} else {
+					printf("\nTalalat:\n");
+					printf("Rendszam  : %s\n", autok[index].rendSz);
+					printf("Model: %s\n", autok[index].model);
+					printf("Viszga ervenyessege  : %s\n", autok[index].vizsgaErv);
+					printf("Tulajdonos neve  : %s\n", autok[index].tulajNev);
+					printf("\n\n");
+			}
 			break;
 		}
 		case 6: { //Auto torlese
