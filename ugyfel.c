@@ -3,7 +3,7 @@
 #include <string.h>
 #include "ugyfel.h"
 
-// Ügyfelek beolvasása a fájlból
+
 Ugyfel* betoltUgyfelek(const char* filename, int *db) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
@@ -35,7 +35,7 @@ Ugyfel* betoltUgyfelek(const char* filename, int *db) {
     return ugyfelek;
 }
 
-void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const char *nev, const char *email, const char *telSz){
+void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel){
   return;
 }
 

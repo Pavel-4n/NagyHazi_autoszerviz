@@ -3,7 +3,7 @@
 #include <string.h>
 #include "javitas.h"
 
-// Javítások beolvasása a fájlból
+
 Javitas* betoltJavitasok(const char* filename, int *db) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
@@ -36,6 +36,6 @@ Javitas* betoltJavitasok(const char* filename, int *db) {
     return javitasok;
 }
 
-void javitasHozzaad(Javitas **javitasok, int *db, const char *rendSz, const char *tipus, const char *datum, int ar){
+void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas){
   return;
 }

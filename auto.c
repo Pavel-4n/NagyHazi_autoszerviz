@@ -3,7 +3,7 @@
 #include "debugmalloc.h"
 #include "auto.h"
 
-// Autók beolvasása a fájlból
+
 Auto* betoltAutok(const char* filename, int *db) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
@@ -36,7 +36,7 @@ Auto* betoltAutok(const char* filename, int *db) {
     return autok;
 }
 
-void autoHozzaad(Auto **autok, int *db, const char *rendSz, const char *model, const char *vizsgaErv, const char *tulajNev){
+void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto){
   return;
 }
 
@@ -44,11 +44,11 @@ int autoKeres(Auto *autok, int db, const char *rendSz){
   return -1;
 }
 
-void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db){
+void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db, const char *rendSz){
   return;
 }
 
-void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javitas_db){
+void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javitas_db, const char *rendSz){
   return;
 }
 

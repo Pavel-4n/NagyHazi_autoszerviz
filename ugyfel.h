@@ -11,14 +11,12 @@
 Ugyfel* betoltUgyfelek(const char* filename, int *db);
 
 /**
- * uj ugyfélt ad hozza a tombjehez
- * @param ugyfelek - az ugyfelek tomje (pointer)
- * @param db - az ugyfelek szama (output)
- * @param nev - az uj ugyfel neve
- * @param email - az uj ugyfel emailje
- * @param telSz - az uj ugyfel telefonszama
+ * uj ugyfelet ad hozza a tombhoz
+ * @param ugyfelek - az ugyfelek tombje (pointer)
+ * @param db - az ugyfelek szama
+ * @param ujUgyfel - az uj ugyfel adatai egy Ugyfel strukturaban
  */
-void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const char *nev, const char *email, const char *telSz);
+void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel);
 
 /**
  * ugyfelet keres a neve szerint

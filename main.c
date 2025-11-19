@@ -38,7 +38,7 @@ int main() {
 			char nev[100];
 			char email[100];
 			char telSz[50];
-		
+
 			printf("ugyfel neve: ");
 			scanf(" %99[^\n]", nev);
 
@@ -48,7 +48,12 @@ int main() {
 			printf("ugyfel telefonszama: ");
 			scanf(" %49s", telSz);
 
-			ugyfelHozzaad(&ugyfelek, &ugyfel_db, nev, email, telSz);
+			Ugyfel uj;
+			strcpy(uj.nev, nev);
+			strcpy(uj.email, email);
+			strcpy(uj.telSz, telSz);
+
+			ugyfelHozzaad(&ugyfelek, &ugyfel_db, &uj);
 			break;
 		case 2: { //Auto hozzaadasa
 			char rendSz[100];
@@ -66,9 +71,15 @@ int main() {
 			scanf(" %49s", vizsgaErv);
 
 			printf("auto tulajdonosanak neve: ");
-			scanf(" %99s", tulajNev);
+			scanf(" %99[^\n]", tulajNev);
 
-			autoHozzaad(&autok, &auto_db, rendSz, model, vizsgaErv, tulajNev);
+			Auto ujAuto;
+			strcpy(ujAuto.rendSz, rendSz);
+			strcpy(ujAuto.model, model);
+			strcpy(ujAuto.vizsgaErv, vizsgaErv);
+			strcpy(ujAuto.tulajNev, tulajNev);
+
+			autoHozzaad(&autok, &auto_db, &ujAuto);
 			break;
 		}
 		case 3: { //Javitas hozzaadasa
@@ -89,7 +100,13 @@ int main() {
 			printf("javitas ara: ");
 			scanf("%d", &ar);
 
-			javitasHozzaad(&javitasok, &javitas_db, rendSz, tipus, datum, ar);
+			Javitas ujJ;
+			strcpy(ujJ.rendSz, rendSz);
+			strcpy(ujJ.tipus, tipus);
+			strcpy(ujJ.datum, datum);
+			ujJ.ar = ar;
+
+			javitasHozzaad(&javitasok, &javitas_db, &ujJ);
 			break;
 		}
 		case 4: { //Kereses ugyfel neve szerint
@@ -105,11 +122,21 @@ int main() {
 			break;
 		}
 		case 6: { //Auto torlese
-			autoTorles(&autok, &auto_db, &javitasok, &javitas_db);
+			char torlendoRendSz[50];
+
+			printf("torlendo auto rendszama: ");
+			scanf(" %49s", torlendoRendSz);
+
+			autoTorles(&autok, &auto_db, &javitasok, &javitas_db, torlendoRendSz);
 			break;
 		}
 		case 7: { //Auto szerviz tortenet
-			autoSzervizTortenet(autok, auto_db, javitasok, javitas_db);
+			char keresettRendSz[50];
+
+			printf("melyik auto szerviz tortenete erdekel (rendszam): ");
+			scanf(" %49s", keresettRendSz);
+
+			autoSzervizTortenet(autok, auto_db, javitasok, javitas_db, keresettRendSz);
 			break;
 		}
 		case 8: { //Lejaro vizsgaju autok listazasa

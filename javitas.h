@@ -11,14 +11,12 @@
 Javitas* betoltJavitasok(const char* filename, int *db);
 
 /**
- * uj javitest ad hozza a tombjehez
- * @param javitasok - a javitasok tomje (pointer)
+ * uj javitast ad hozza a tombjehez
+ * @param javitasok - a javitasok tombje (pointer)
  * @param db - a javitasok szama (output)
- * @param rendSz - az auto rendszama
- * @param tipus - a javitest tipusa
- * @param datum - a javitas datuma
- * @param ar - a javitas ara
+ * @param ujJavitas - az uj javitas adatai egy Javitas strukturaban
  */
-void javitasHozzaad(Javitas **javitasok, int *db, const char *rendSz, const char *tipus, const char *datum, int ar);
+void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas);
+
 
 #endif

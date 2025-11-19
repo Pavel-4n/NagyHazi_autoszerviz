@@ -14,12 +14,9 @@ Auto* betoltAutok(const char* filename, int *db);
  * uj autot ad hozza a tombjehez
  * @param autok - az autok tomje
  * @param db - az autok szama 
- * @param rendSz - az uj auto rendszama
- * @param model - az uj auto modelje
- * @param vizsgaErv - az uj auto vizsgaeervenyessege
- * @param tulajNev - az uj auto tulajdonosanak neve
+ * @param ujAuto - az uj auto adatai egy Auto strukturaban
  */
-void autoHozzaad(Auto **autok, int *db, const char *rendSz, const char *model, const char *vizsgaErv, const char *tulajNev);
+void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto);
 
 /**
  * autot keres egy felhasznalo altal megadott rendszam szerint
@@ -31,27 +28,30 @@ void autoHozzaad(Auto **autok, int *db, const char *rendSz, const char *model, c
 int autoKeres(Auto *autok, int db, const char *rendSz);
 
 /**
- * autot torol az autok tombjebol es az osszes hozza tartozo javitasokat is
+ * autot torol az autok tombjebol es az osszes hozza tartozo javitast is
  * @param autok - az autok tomje 
  * @param auto_db - az autok szama 
  * @param javitasok - a javitasok tomje
  * @param javitas_db - a javitasok szama
+ * @param rendSz - a torlendo auto rendszama
  */
-void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db);
+void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db, const char *rendSz);
 
 /**
- * megjeleníti egy auto szerviz tortenetet
+ * megjeleniti egy auto szerviz tortenetet
  * @param autok - az autok tomje
  * @param auto_db - az autok szama
  * @param javitasok - a javitasok tomje
  * @param javitas_db - a javitasok szama
+ * @param rendSz - a vizsgalt auto rendszama
  */
-void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javitas_db);
+void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javitas_db, const char *rendSz);
 
 /**
- * lejaro vizsgaju autokat listaazza
+ * lejaro vizsgaju autokat listazza
  * @param autok - az autok tomje
  * @param auto_db - az autok szama
  */
 void lejaroVizsgak(Auto *autok, int auto_db);
+
 #endif
