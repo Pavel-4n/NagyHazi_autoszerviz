@@ -5,6 +5,7 @@
 #include "structs.h"
 #include "ugyfel.h"
 #include <stdio.h>
+#include <string.h>
 
 int main() {
 	// adatok beolvasasa, tomb meret valtozok inicializalasa
@@ -13,6 +14,7 @@ int main() {
 	Ugyfel *ugyfelek = betoltUgyfelek("data/ugyfelek.txt", &ugyfel_db);
 	Auto *autok = betoltAutok("data/autok.txt", &auto_db);
 	Javitas *javitasok = betoltJavitasok("data/javitasok.txt", &javitas_db);
+	
 
 	int menuVal = 0;
 	printf("                 _                               _     \n");
@@ -35,26 +37,30 @@ int main() {
 	
 	switch(menuVal) {
 		case 1: { //Ugyfel hozzadasa
-			char nev[100];
-			char email[100];
-			char telSz[50];
+				char nev[100];
+				char email[100];
+				char telSz[50];
 
-			printf("ugyfel neve: ");
-			scanf(" %99[^\n]", nev);
+				printf("ugyfel neve: ");
+				scanf(" %99[^\n]", nev);
 
-			printf("ugyfel email-cime: ");
-			scanf(" %99s", email);
+				printf("ugyfel email-cime: ");
+				scanf(" %99s", email);
 
-			printf("ugyfel telefonszama: ");
-			scanf(" %49s", telSz);
+				printf("ugyfel telefonszama: ");
+				scanf(" %49s", telSz);
 
-			Ugyfel uj;
-			strcpy(uj.nev, nev);
-			strcpy(uj.email, email);
-			strcpy(uj.telSz, telSz);
+				Ugyfel uj;
+				uj.nev   = malloc(strlen(nev) + 1);
+				uj.email = malloc(strlen(email) + 1);
+				uj.telSz = malloc(strlen(telSz) + 1);
 
-			ugyfelHozzaad(&ugyfelek, &ugyfel_db, &uj);
-			break;
+				strcpy(uj.nev, nev);
+				strcpy(uj.email, email);
+				strcpy(uj.telSz, telSz);
+
+				ugyfelHozzaad(&ugyfelek, &ugyfel_db, &uj);
+				break;
 		}
 		case 2: { //Auto hozzaadasa
 			char rendSz[100];
@@ -153,7 +159,7 @@ int main() {
 	}
 	
 	// felszabaditasok
-	free(ugyfelek);
+	felszabaditUgyfelek(ugyfelek, ugyfel_db);
 	free(autok);
 	free(javitasok);
 	

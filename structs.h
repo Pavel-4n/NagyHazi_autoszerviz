@@ -2,9 +2,9 @@
 #define STRUCTS_H
 
 typedef struct {
-    char nev[64];
-    char email[64];
-    char telSz[32];
+    char *nev;
+    char *email;
+    char *telSz;
 } Ugyfel;
 
 typedef struct {
