@@ -36,7 +36,7 @@ int main() {
 	scanf("%d" , &menuVal);	
 	
 	switch(menuVal) {
-		case 1: { //Ugyfel hozzadasa
+		case 1: { // Ugyfel hozzadasa
 				char nev[100];
 				char email[100];
 				char telSz[50];
@@ -51,13 +51,14 @@ int main() {
 				scanf(" %49s", telSz);
 
 				Ugyfel uj;
-				uj.nev   = malloc(strlen(nev) + 1);
-				uj.email = malloc(strlen(email) + 1);
-				uj.telSz = malloc(strlen(telSz) + 1);
 
-				strcpy(uj.nev, nev);
+				// IDE NEM KELL malloc, csak masolas:
+				strcpy(uj.nev,   nev);
 				strcpy(uj.email, email);
 				strcpy(uj.telSz, telSz);
+
+				// a kov pointert is illik inicializalni
+				uj.kov = NULL;
 
 				ugyfelHozzaad(&ugyfelek, &ugyfel_db, &uj);
 				break;
@@ -188,9 +189,9 @@ int main() {
 	}
 	
 	// felszabaditasok
-	felszabaditUgyfelek(ugyfelek, ugyfel_db);
-	free(autok);
-	free(javitasok);
+	felszabaditUgyfelek(ugyfelek);
+	felszabaditAutok(autok);
+	felszabaditJavitasok(javitasok);
 	
   return 0;
 }

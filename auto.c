@@ -11,28 +11,50 @@ Auto* betoltAutok(const char* filename, int *db) {
         *db = 0;
         return NULL;
     }
-    
-    Auto *autok = NULL;
+
+    Auto *lista = NULL;
     *db = 0;
     char line[256];
-    
+
     while (fgets(line, sizeof(line), fp) != NULL) {
-        Auto *temp = (Auto*)realloc(autok, (*db + 1) * sizeof(Auto));
-        if (temp == NULL) {
-            printf("memoria foglalasa sikertelen\n");
-            free(autok);
-            fclose(fp);
-            return NULL;
-        }
-        autok = temp;
-        
+
         line[strcspn(line, "\n")] = 0;
-        sscanf(line, "%[^;];%[^;];%[^;];%s", autok[*db].rendSz, autok[*db].model, autok[*db].vizsgaErv, autok[*db].tulajNev);
+
+    
+        Auto *uj = malloc(sizeof(Auto));
+        if (uj == NULL) {
+            printf("memoria foglalasa sikertelen\n");
+            fclose(fp);
+            return lista;  
+        }
+
+        
+        sscanf(line, "%15[^;];%63[^;];%15[^;];%63s",
+               uj->rendSz,
+               uj->model,
+               uj->vizsgaErv,
+               uj->tulajNev);
+
+        
+        uj->kov = lista;
+        lista = uj;
+
         (*db)++;
     }
+
     fclose(fp);
-    return autok;
+    return lista;
 }
+
+void felszabaditAutok(Auto *lista) {
+    Auto *p = lista;
+    while (p != NULL) {
+        Auto *kov = p->kov;
+        free(p);
+        p = kov;
+    }
+}
+
 
 void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto){
   return;

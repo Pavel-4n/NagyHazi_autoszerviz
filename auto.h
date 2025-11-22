@@ -3,12 +3,22 @@
 #include "structs.h"
 
 /**
- * autokat olvas be az autok.txt filebol es eltarolja a memoriaban
- * @param filename - autok.txt 
- * @param db - autok szama
- * @return autok tombre mutato pointer
+ * Lancolt listakent beolvassa az autokat az autok.txt fajlbol.
+ * Minden sorbol egy Auto listaelemet hoz letre, es a lista elejere fuz.
+ *
+ * @param filename - bemeneti fajl neve (autok.txt)
+ * @param db - az olvasott autok szama
+ * @return Auto lista feje (pointer az elso Auto elemre)
  */
 Auto* betoltAutok(const char* filename, int *db);
+
+/**
+ * Felszabaditja az autok lancolt listajat.
+ * Vegiglepked a lista elemein es mindegyiket felszabaditja.
+ *
+ * @param lista - az elso Auto listaelem pointere (NULL, ha ures a lista)
+ */
+void felszabaditAutok(Auto *lista);
 
 /**
  * uj autot ad hozza a tombjehez

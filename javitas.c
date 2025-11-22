@@ -10,30 +10,48 @@ Javitas* betoltJavitasok(const char* filename, int *db) {
         *db = 0;
         return NULL;
     }
-    
-    Javitas *javitasok = NULL;
+
+    Javitas *lista = NULL;
     *db = 0;
     char line[256];
-    
+
     while (fgets(line, sizeof(line), fp) != NULL) {
-        Javitas *temp = (Javitas*)realloc(javitasok, (*db + 1) * sizeof(Javitas));
-        if (temp == NULL) {
-            printf("memoria foglalasa sikertelen\n");
-            free(javitasok);
-            fclose(fp);
-            return NULL;
-        }
-        javitasok = temp;
-        
         line[strcspn(line, "\n")] = 0;
-        int ar_temp;
-        sscanf(line, "%[^;];%[^;];%[^;];%d", javitasok[*db].rendSz, javitasok[*db].tipus, javitasok[*db].datum, &ar_temp);
-        javitasok[*db].ar = ar_temp;
-        
+
+        Javitas *uj = malloc(sizeof(Javitas));
+        if (uj == NULL) {
+            printf("memoria foglalasa sikertelen\n");
+            fclose(fp);
+            return lista;
+        }
+
+        if (sscanf(line, "%15[^;];%63[^;];%15[^;];%d",
+                   uj->rendSz,
+                   uj->tipus,
+                   uj->datum,
+                   &uj->ar) != 4) {
+            printf("hibas sor a javitasok fajlban, kihagyom: %s\n", line);
+            free(uj);
+            continue;
+        }
+
+        uj->kov = lista;
+        lista = uj;
+
         (*db)++;
     }
+
     fclose(fp);
-    return javitasok;
+    return lista;
+}
+
+void felszabaditJavitasok(Javitas *lista) {
+    Javitas *p = lista;
+    while (p != NULL) {
+        Javitas *kov = p->kov;
+        free(p);
+        p = kov;
+    }
 }
 
 void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas){

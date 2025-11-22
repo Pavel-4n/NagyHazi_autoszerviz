@@ -3,27 +3,22 @@
 #include "structs.h"
 
 /**
- * egy sort dolgoz fel az ugyfelek fajlbol es feltolt egy Ugyfel strukturat
- * @param fajlSor - a fajlbol beolvasott sor (nev;email;telefonszam)
- * @param egyUgyfel - a kitoltendo Ugyfel struktura cime
- * @return 1 ha sikeres volt a feldolgozas, 0 ha hiba tortent
- */
-int feldolgozUgyfelSort(const char *fajlSor, Ugyfel *egyUgyfel);
-
-/**
- * ugyfeleket olvas be az ugyfelek.txt filebol es eltarolja a memoriaban
- * @param filename - fajl neve jelen esetben a ugyfelek.txt
- * @param db - ugyfelek szama
- * @return pointer az ugyfelek tombre
+ * Lancolt listakent beolvassa az ugyfeleket az ugyfelek.txt fajlbol.
+ * Minden sorbol egy Ugyfel listaelemet hoz letre, es a lista elejere fuz.
+ *
+ * @param filename - bemeneti fajl neve (ugyfelek.txt)
+ * @param db - az olvasott ugyfelek szama
+ * @return Ugyfel lista feje (pointer az elso Ugyfel elemre)
  */
 Ugyfel* betoltUgyfelek(const char* filename, int *db);
 
 /**
- * ugyfelek dinamikusan foglalt adatait szabaditja fel
- * @param ugyfelek - az ugyfelek tombje
- * @param db - az ugyfelek szama
+ * Felszabaditja az ugyfelek lancolt listajat.
+ * Vegiglepked a lista elemein es mindegyiket felszabaditja.
+ *
+ * @param lista - az elso Ugyfel listaelem pointere (NULL, ha ures a lista)
  */
-void felszabaditUgyfelek(Ugyfel *ugyfelek, int db);
+void felszabaditUgyfelek(Ugyfel *lista);
 
 /**
  * uj ugyfelet ad hozza a tombhoz

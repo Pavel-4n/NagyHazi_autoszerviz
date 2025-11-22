@@ -3,12 +3,22 @@
 #include "structs.h"
 
 /**
- * javitasokat olvas be az javitasok.txt filebol es eltarolja a memoriaban
- * @param filename - fajl neve jelen esetben a javitasok.txt
- * @param db - avitasok szama 
- * @return pointerjavitasok tombre
+ * Lancolt listakent beolvassa a javitasokat a javitasok.txt fajlbol.
+ * Minden sorbol egy Javitas listaelemet hoz letre, es a lista elejere fuz.
+ *
+ * @param filename - bemeneti fajl neve (javitasok.txt)
+ * @param db - az olvasott javitasok szama
+ * @return Javitas lista feje (pointer az elso Javitas elemre)
  */
 Javitas* betoltJavitasok(const char* filename, int *db);
+
+/**
+ * Felszabaditja a javitasok lancolt listajat.
+ * Vegiglepked a lista elemein es mindegyiket felszabaditja.
+ *
+ * @param lista - az elso Javitas listaelem pointere (NULL, ha ures a lista)
+ */
+void felszabaditJavitasok(Javitas *lista);
 
 /**
  * uj javitast ad hozza a tombjehez
