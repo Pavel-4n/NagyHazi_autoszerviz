@@ -62,6 +62,7 @@ void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javit
  * @param autok - az autok tomje
  * @param auto_db - az autok szama
  */
-void lejaroVizsgak(Auto *autok, int auto_db);
+void lejaroVizsgak(Auto *autok, const char *maiDatum);
+
 
 #endif

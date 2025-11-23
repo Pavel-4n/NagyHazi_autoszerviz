@@ -176,10 +176,29 @@ int main() {
 			autoSzervizTortenet(autok, auto_db, javitasok, javitas_db, keresettRendSz);
 			break;
 		}
-		case 8: { //Lejaro vizsgaju autok listazasa
-			lejaroVizsgak(autok, auto_db);
-			break;
+		case 8: { // Lejaro vizsgaju autok listazasa
+				char maiInput[100];
+
+				printf("Add meg a mai datumot (YYYY-MM-DD): ");
+				scanf(" %99s", maiInput);
+
+				int n = strlen(maiInput) + 1;
+
+				char *maiDatum = (char*) malloc(n * sizeof(char));
+				if (maiDatum == NULL) {
+						printf("Memoria foglalasi hiba!\n");
+						break;
+				}
+
+				strcpy(maiDatum, maiInput);
+
+				lejaroVizsgak(autok, maiDatum);
+
+				free(maiDatum);
+				break;
 		}
+
+
 		case 9: { //Kilepes
 			printf("Kilepes...\n");
 			break;

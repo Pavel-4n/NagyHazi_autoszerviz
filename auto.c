@@ -34,7 +34,6 @@ Auto* betoltAutok(const char* filename, int *db) {
                uj->model,
                uj->vizsgaErv,
                uj->tulajNev);
-
         
         uj->kov = lista;
         lista = uj;
@@ -77,6 +76,31 @@ void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javit
   return;
 }
 
-void lejaroVizsgak(Auto *autok, int auto_db){
-  return;
+void lejaroVizsgak(Auto *autok, const char *maiDatum) {
+    int maiEv, maiHo, maiNap;
+    if (sscanf(maiDatum, "%d-%d-%d", &maiEv, &maiHo, &maiNap) != 3) {
+        printf("Hibas datum formatum! (YYYY-MM-DD kell)\n");
+        return;
+    }
+
+    int talalt = 0;
+
+    for (Auto *p = autok; p != NULL; p = p->kov) {
+        int ev, ho, nap;
+        if (sscanf(p->vizsgaErv, "%d-%d-%d", &ev, &ho, &nap) != 3)
+            continue;
+
+        if (ev < maiEv ||
+           (ev == maiEv && ho < maiHo) ||
+           (ev == maiEv && ho == maiHo && nap < maiNap)) {
+
+            printf("%s | %s | %s | %s\n",
+                   p->rendSz, p->model, p->vizsgaErv, p->tulajNev);
+            talalt = 1;
+        }
+    }
+
+    if (!talalt)
+        printf("Minden autonak ervenyes a muszaki vizsgaja.\n");
 }
+
