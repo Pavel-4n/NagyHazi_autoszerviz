@@ -168,14 +168,15 @@ int main() {
 			break;
 		}
 		case 7: { //Auto szerviz tortenet
-			char keresettRendSz[50];
+    	char keresettRendSz[50];
 
-			printf("melyik auto szerviz tortenete erdekel (rendszam): ");
-			scanf(" %49s", keresettRendSz);
+    	printf("melyik auto szerviz tortenete erdekel (rendszam): ");
+    	scanf(" %49s", keresettRendSz);
 
-			autoSzervizTortenet(autok, auto_db, javitasok, javitas_db, keresettRendSz);
-			break;
-		}
+    	autoSzervizTortenet(autok, javitasok, keresettRendSz);
+    	break;
+	}
+
 		case 8: { // Lejaro vizsgaju autok listazasa
 				char maiInput[100];
 

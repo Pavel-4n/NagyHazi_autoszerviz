@@ -55,7 +55,7 @@ void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db
  * @param javitas_db - a javitasok szama
  * @param rendSz - a vizsgalt auto rendszama
  */
-void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javitas_db, const char *rendSz);
+void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz);
 
 /**
  * lejaro vizsgaju autokat listazza

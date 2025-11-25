@@ -72,9 +72,39 @@ void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db
   return;
 }
 
-void autoSzervizTortenet(Auto *autok, int auto_db, Javitas *javitasok, int javitas_db, const char *rendSz){
-  return;
+void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz) {
+    Auto *talaltAuto = NULL;
+
+    for (Auto *n = autok; n != NULL; n = n->kov) {
+        if (strcmp(n->rendSz, rendSz) == 0) {
+            talaltAuto = n;
+            break;
+        }
+    }
+
+    if (talaltAuto == NULL) {
+        printf("Nincs ilyen rendszamu auto: %s\n", rendSz);
+        return;
+    }
+
+    printf("Szerviz tortenet: %s (%s)\n", talaltAuto->rendSz, talaltAuto->model);
+    printf("-----------------------------------------\n");
+
+    int volt = 0;
+
+    for (Javitas *k = javitasok; k != NULL; k = k->kov) {
+        if (strcmp(k->rendSz, rendSz) == 0) {
+            printf("Datum: %s | Tipus: %s | Ar: %d Ft\n",
+                    k->datum, k->tipus, k->ar);
+            volt = 1;
+        }
+    }
+
+    if (!volt) {
+        printf("Ehhez az autohoz meg nincs regisztralt javitas.\n");
+    }
 }
+
 
 void lejaroVizsgak(Auto *autok, const char *maiDatum) {
     int maiEv, maiHo, maiNap;
