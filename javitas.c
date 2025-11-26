@@ -46,14 +46,25 @@ Javitas* betoltJavitasok(const char* filename, int *db) {
 }
 
 void felszabaditJavitasok(Javitas *lista) {
-    Javitas *p = lista;
-    while (p != NULL) {
-        Javitas *kov = p->kov;
-        free(p);
-        p = kov;
+    Javitas *iter = lista;
+    while (iter != NULL) {
+        Javitas *kov = iter->kov;
+        free(iter);
+        iter = kov;
     }
 }
 
 void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas){
-  return;
+    Javitas *uj = malloc(sizeof(Javitas));
+    if (uj == NULL){
+        printf("Memoria foglalasi hiba!\n");
+        return;
+    }
+    strcpy(uj->rendSz, ujJavitas->rendSz);
+    strcpy(uj->tipus, ujJavitas->tipus);
+    strcpy(uj->datum, ujJavitas->datum);
+    uj->ar = ujJavitas->ar;
+    uj->kov = *javitasok;
+    *javitasok = uj;
+    (*db)++;
 }

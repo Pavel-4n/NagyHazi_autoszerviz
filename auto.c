@@ -46,18 +46,31 @@ Auto* betoltAutok(const char* filename, int *db) {
 }
 
 void felszabaditAutok(Auto *lista) {
-    Auto *p = lista;
-    while (p != NULL) {
-        Auto *kov = p->kov;
-        free(p);
-        p = kov;
+    Auto *iter = lista;
+    while (iter != NULL) {
+        Auto *kov = iter->kov;
+        free(iter);
+        iter = kov;
     }
 }
 
 
 void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto){
-  return;
+    Auto *uj = malloc(sizeof(Auto));
+    if (uj == NULL){
+        printf("Memoria foglalasi hiba!\n");
+        return;
+    }
+    strcpy(uj->rendSz, ujAuto->rendSz);
+    strcpy(uj->model, ujAuto->model);
+    strcpy(uj->vizsgaErv, ujAuto->vizsgaErv);
+    strcpy(uj->tulajNev, ujAuto->tulajNev);
+    uj->kov = *autok;
+    *autok = uj;
+    (*db)++;
 }
+
+
 
 int autoKeres(Auto *autok, int db, const char *rendSz){
     for (int i = 0; i < db; i++) {

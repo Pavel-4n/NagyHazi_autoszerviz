@@ -17,6 +17,7 @@ int main() {
 	
 
 	int menuVal = 0;
+	while (1){
 	printf("                 _                               _     \n");
 	printf("     /\\        | |                             (_)    \n");
 	printf("    /  \\  _   _| |_ ___  ___ _______ _ ____   ___ ____\n");
@@ -207,6 +208,7 @@ int main() {
 		default:
 			printf("Valasztott menu: %d\n", menuVal);
 	}
+		}
 	
 	// felszabaditasok
 	felszabaditUgyfelek(ugyfelek);
