@@ -220,6 +220,9 @@ int main()
 		case 9:
 		{ // Kilepes
 			printf("Kilepes...\n");
+			mentUgyfelek("data/ugyfelek.txt", ugyfelek);
+			mentAutok("data/autok.txt", autok);
+			mentJavitasok("data/javitasok.txt", javitasok);
 			break;
 		}
 		default:

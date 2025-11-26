@@ -38,4 +38,6 @@ void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel);
 int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev);
 
 
+
+void mentUgyfelek(const char *filename, Ugyfel *lista);
 #endif

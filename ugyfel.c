@@ -82,3 +82,17 @@ int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev) {
     }
     return -1;
 }
+
+void mentUgyfelek(const char *filename, Ugyfel *lista) {
+    FILE *fp = fopen(filename, "w");
+    if (!fp) {
+        printf("Hiba: nem tudom megnyitni a %s fajlt!\n", filename);
+        return;
+    }
+
+    for (Ugyfel *p = lista; p != NULL; p = p->kov) {
+        fprintf(fp, "%s;%s;%s\n", p->nev, p->email, p->telSz);
+    }
+
+    fclose(fp);
+}

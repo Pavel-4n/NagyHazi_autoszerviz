@@ -63,6 +63,6 @@ void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz);
  * @param auto_db - az autok szama
  */
 void lejaroVizsgak(Auto *autok, const char *maiDatum);
-
+void mentAutok(const char *filename, Auto *lista);
 
 #endif

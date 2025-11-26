@@ -68,3 +68,18 @@ void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas){
     *javitasok = uj;
     (*db)++;
 }
+void mentJavitasok(const char *filename, Javitas *lista) {
+    FILE *fp = fopen(filename, "w");
+    if (!fp) {
+        printf("Hiba: nem tudom megnyitni a %s fajlt!\n", filename);
+        return;
+    }
+
+    for (Javitas *p = lista; p != NULL; p = p->kov) {
+        fprintf(fp, "%s;%s;%s;%d\n",
+                p->rendSz, p->tipus, p->datum, p->ar);
+    }
+
+    fclose(fp);
+}
+

@@ -27,6 +27,6 @@ void felszabaditJavitasok(Javitas *lista);
  * @param ujJavitas - az uj javitas adatai egy Javitas strukturaban
  */
 void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas);
-
+void mentJavitasok(const char *filename, Javitas *lista);
 
 #endif

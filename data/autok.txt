@@ -1,5 +1,6 @@
-ABC-123;Opel Astra H;2025-10-31;Nagy Peter
-DEF-456;Suzuki Vitara;2026-05-15;Kiss Maria
-GHI-789;Ford Focus;2024-12-01;Kovacs Janos
-JKL-001;Toyota Corolla;2027-01-20;Nagy Peter
-XYZ-987;Skoda Octavia;2025-08-30;Szabo Eva
+TRE-456;Honda Civic;2026-3-4;Teszt Elek
+XYZ-987;Skoda Octavia;2025-08-30;Szabo
+JKL-001;Toyota Corolla;2027-01-20;Nagy
+GHI-789;Ford Focus;2024-12-01;Kovacs
+DEF-456;Suzuki Vitara;2026-05-15;Kiss
+ABC-123;Opel Astra H;2025-10-31;Nagy

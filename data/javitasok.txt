@@ -1,5 +1,6 @@
-ABC-123;Kotelezo szerviz (olajcsere);2024-11-10;35000
-ABC-123;Fekbetet csere (elso);2024-11-15;60000
-DEF-456;Teli gumi csere;2024-11-14;12000
-GHI-789;Vezermuszij csere;2024-10-25;110000
+TRE-456;kerek csere;2025-11-28;16998
 ABC-123;Izzocsere (bal elso);2024-11-18;5000
+GHI-789;Vezermuszij csere;2024-10-25;110000
+DEF-456;Teli gumi csere;2024-11-14;12000
+ABC-123;Fekbetet csere (elso);2024-11-15;60000
+ABC-123;Kotelezo szerviz (olajcsere);2024-11-10;35000

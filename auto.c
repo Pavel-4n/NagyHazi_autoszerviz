@@ -147,3 +147,18 @@ void lejaroVizsgak(Auto *autok, const char *maiDatum) {
         printf("Minden autonak ervenyes a muszaki vizsgaja.\n");
 }
 
+void mentAutok(const char *filename, Auto *lista) {
+    FILE *fp = fopen(filename, "w");
+    if (!fp) {
+        printf("Hiba: nem tudom megnyitni a %s fajlt!\n", filename);
+        return;
+    }
+
+    for (Auto *p = lista; p != NULL; p = p->kov) {
+        fprintf(fp, "%s;%s;%s;%s\n",
+                p->rendSz, p->model, p->vizsgaErv, p->tulajNev);
+    }
+
+    fclose(fp);
+}
+
