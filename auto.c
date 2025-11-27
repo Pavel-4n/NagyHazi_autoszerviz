@@ -82,6 +82,7 @@ int autoKeres(Auto *autok, int db, const char *rendSz){
 }
 
 void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db, const char *rendSz){
+    //autok torlese majd kerdes hogy akarja e a felhasznalo torolni a hozza tartozo javitasokat is.
   return;
 }
 
