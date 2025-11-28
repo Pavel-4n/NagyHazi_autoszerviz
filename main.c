@@ -172,16 +172,28 @@ int main()
 			}
 			break;
 		}
-		case 6:
-		{ // Auto torlese
-			char torlendoRendSz[50];
+			case 6: { // Auto torlese
+					char torlendoRendSz[50];
 
-			printf("torlendo auto rendszama: ");
-			scanf(" %49s", torlendoRendSz);
+					printf("Torolni kivant auto rendszama: ");
+					scanf(" %49s", torlendoRendSz);
 
-			autoTorles(&autok, &auto_db, &javitasok, &javitas_db, torlendoRendSz);
-			break;
-		}
+					int torolveVolt = autoTorles(&autok, &auto_db, torlendoRendSz);
+
+					if (torolveVolt) {
+							char valasz;
+
+							printf("Akarod a hozza tartozo javitasokat is torolni? (I/N): ");
+							scanf(" %c", &valasz);
+
+							if (valasz == 'I' || valasz == 'i') {
+									javitasTorlesRendszamSzerint(&javitasok, &javitas_db, torlendoRendSz);
+							}
+					}
+
+					break;
+			}
+
 		case 7:
 		{ // Auto szerviz tortenet
 			char keresettRendSz[50];
@@ -216,15 +228,20 @@ int main()
 			free(maiDatum);
 			break;
 		}
+			case 9: { // Kilepes
+					printf("Kilepes...\n");
+					mentUgyfelek("data/ugyfelek.txt", ugyfelek);
+					mentAutok("data/autok.txt", autok);
+					mentJavitasok("data/javitasok.txt", javitasok);
 
-		case 9:
-		{ // Kilepes
-			printf("Kilepes...\n");
-			mentUgyfelek("data/ugyfelek.txt", ugyfelek);
-			mentAutok("data/autok.txt", autok);
-			mentJavitasok("data/javitasok.txt", javitasok);
-			break;
-		}
+					/* felszabaditasok (ha vannak ilyen függvényeid) */
+					felszabaditUgyfelek(ugyfelek);
+					felszabaditAutok(autok);
+					felszabaditJavitasok(javitasok);
+
+					return 0; /* kilép a main-ből -- a program bezárul */
+			}
+
 		default:
 			printf("Valasztott menu: %d\n", menuVal);
 		}

@@ -37,15 +37,7 @@ void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto);
  */
 int autoKeres(Auto *autok, int db, const char *rendSz);
 
-/**
- * autot torol az autok tombjebol es az osszes hozza tartozo javitast is
- * @param autok - az autok tomje 
- * @param auto_db - az autok szama 
- * @param javitasok - a javitasok tomje
- * @param javitas_db - a javitasok szama
- * @param rendSz - a torlendo auto rendszama
- */
-void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db, const char *rendSz);
+int autoTorles(Auto **autok, int *auto_db, const char *rendSz);
 
 /**
  * megjeleniti egy auto szerviz tortenetet

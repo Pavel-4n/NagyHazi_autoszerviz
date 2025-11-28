@@ -83,3 +83,28 @@ void mentJavitasok(const char *filename, Javitas *lista) {
     fclose(fp);
 }
 
+void javitasTorlesRendszamSzerint(Javitas **javitasok, int *javitas_db, const char *rendSz)
+{
+    Javitas *p = *javitasok;
+    Javitas *prev = NULL;
+
+    while (p != NULL && strcmp(p->rendSz, rendSz) != 0) {
+        prev = p;
+        p = p->kov;
+    }
+
+    if (p == NULL) {
+        printf("Nincs ehhez az autohoz javitas: %s\n", rendSz);
+        return;
+    }
+
+    if (prev == NULL)
+        *javitasok = p->kov;
+    else
+        prev->kov = p->kov;
+
+    free(p);
+    (*javitas_db)--;
+
+    printf("A javitas torolve a %s rendszamu autohoz.\n", rendSz);
+}

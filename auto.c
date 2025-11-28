@@ -81,10 +81,32 @@ int autoKeres(Auto *autok, int db, const char *rendSz){
     return -1;
 }
 
-void autoTorles(Auto **autok, int *auto_db, Javitas **javitasok, int *javitas_db, const char *rendSz){
-    //autok torlese majd kerdes hogy akarja e a felhasznalo torolni a hozza tartozo javitasokat is.
-  return;
+int autoTorles(Auto **autok, int *auto_db, const char *rendSz) {
+    Auto *p = *autok;
+    Auto *prev = NULL;
+
+    while (p != NULL && strcmp(p->rendSz, rendSz) != 0) {
+        prev = p;
+        p = p->kov;
+    }
+
+    if (p == NULL) {
+        printf("Nincs ilyen rendszamu auto: %s\n", rendSz);
+        return 0;
+    }
+
+    if (prev == NULL)
+        *autok = p->kov;
+    else
+        prev->kov = p->kov;
+
+    free(p);
+    (*auto_db)--;
+
+    printf("Auto torolve: %s\n", rendSz);
+    return 1;
 }
+
 
 void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz) {
     Auto *talaltAuto = NULL;

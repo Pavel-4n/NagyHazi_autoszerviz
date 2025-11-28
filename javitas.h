@@ -28,5 +28,6 @@ void felszabaditJavitasok(Javitas *lista);
  */
 void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas);
 void mentJavitasok(const char *filename, Javitas *lista);
+void javitasTorlesRendszamSzerint(Javitas **javitasok, int *db, const char *rendSz);
 
 #endif

@@ -1,4 +1,3 @@
-TRE-456;Honda Civic;2026-3-4;Teszt Elek
 XYZ-987;Skoda Octavia;2025-08-30;Szabo
 JKL-001;Toyota Corolla;2027-01-20;Nagy
 GHI-789;Ford Focus;2024-12-01;Kovacs
