@@ -66,8 +66,18 @@ int main()
 			strcpy(uj.telSz, telSz);
 
 			uj.kov = NULL;
+			
+			printf("\nBiztosan hozza akarod adni? (I/N): ");
 
-			ugyfelek = ugyfelHozzaad(ugyfelek, &uj);
+			char valasz;
+			scanf(" %c", &valasz);
+
+			if (valasz == 'I' || valasz == 'i') {
+				ugyfelek = ugyfelHozzaad(ugyfelek, &uj);
+				printf("Sikeresen rogzitve!\n");
+			} else {
+				printf("Megszakitva.\n");
+			}
 			break;
 		}
 		case 2:
@@ -99,7 +109,16 @@ int main()
 			strcpy(ujAuto.vizsgaErv, vizsgaErv);
 			strcpy(ujAuto.tulajNev, tulajNev);
 
-			autok = autoHozzaad(autok, &ujAuto);
+			printf("\nBiztosan hozza akarod adni? (I/N): ");
+			char valasz;
+			scanf(" %c", &valasz);
+
+			if (valasz == 'I' || valasz == 'i') {
+				autok = autoHozzaad(autok, &ujAuto);
+				printf("Sikeresen rogzitve!\n");
+			} else {
+				printf("Megszakitva. \n");
+			}
 			break;
 		}
 		case 3:
@@ -127,7 +146,16 @@ int main()
 			strcpy(ujJ.datum, datum);
 			ujJ.ar = ar;
 
-			javitasok = javitasHozzaad(javitasok, &ujJ);
+			printf("\nBiztosan hozza akarod adni? (I/N): ");
+			char valasz;
+			scanf(" %c", &valasz);
+
+			if (valasz == 'I' || valasz == 'i') {
+				javitasok = javitasHozzaad(javitasok, &ujJ);
+				printf("Sikeresen rogzitve!\n");
+			} else {
+				printf("Megszakitva. \n");
+			}
 			break;
 		}
 		case 4:
@@ -241,7 +269,7 @@ int main()
 					mentAutok("data/autok.txt", autok);
 					mentJavitasok("data/javitasok.txt", javitasok);
 
-=					felszabaditUgyfelek(ugyfelek);
+					felszabaditUgyfelek(ugyfelek);
 					felszabaditAutok(autok);
 					felszabaditJavitasok(javitasok);
 
