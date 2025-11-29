@@ -26,7 +26,7 @@ void felszabaditUgyfelek(Ugyfel *lista);
  * @param db - az ugyfelek szama
  * @param ujUgyfel - az uj ugyfel adatai egy Ugyfel strukturaban
  */
-void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel);
+Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, int *db, const Ugyfel *ujUgyfel);
 
 /**
  * ugyfelet keres a neve szerint
@@ -35,7 +35,7 @@ void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel);
  * @param nev - keresendo ugyfel neve
  * @return ugyfel indexe vagy -1 ha nem talalhato
  */
-int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev);
+Ugyfel* ugyfelKeres(Ugyfel *ugyfelek, const char *nev);
 
 /**
  * Elmenti az ugyfelek listajat a megadott fajlba CSV formatumban.

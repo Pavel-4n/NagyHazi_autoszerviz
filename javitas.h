@@ -26,7 +26,7 @@ void felszabaditJavitasok(Javitas *lista);
  * @param db - a javitasok szama (output)
  * @param ujJavitas - az uj javitas adatai egy Javitas strukturaban
  */
-void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas);
+Javitas* javitasHozzaad(Javitas *javitasok, int *db, const Javitas *ujJavitas);
 /**
  * elmenti a javitasok listajat a megadott fajlba CSV formatumban.
  * (rendszam;tipus;datum;ar)

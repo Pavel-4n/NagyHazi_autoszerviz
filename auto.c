@@ -55,30 +55,36 @@ void felszabaditAutok(Auto *lista) {
 }
 
 
-void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto){
+Auto* autoHozzaad(Auto *autok, int *db, const Auto *ujAuto) {
     Auto *uj = malloc(sizeof(Auto));
-    if (uj == NULL){
+    if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
-        return;
+        return autok;
     }
+    
     strcpy(uj->rendSz, ujAuto->rendSz);
     strcpy(uj->model, ujAuto->model);
     strcpy(uj->vizsgaErv, ujAuto->vizsgaErv);
     strcpy(uj->tulajNev, ujAuto->tulajNev);
-    uj->kov = *autok;
-    *autok = uj;
+    
+    uj->kov = autok;
+
     (*db)++;
+
+    return uj; 
 }
 
 
 
-int autoKeres(Auto *autok, int db, const char *rendSz){
-    for (int i = 0; i < db; i++) {
-        if (strcmp(autok[i].rendSz, rendSz) == 0) {
-            return i;
+Auto* autoKeres(Auto *autok, const char *rendSz) {
+    Auto *p = autok;
+    while (p != NULL) {
+        if (strcmp(p->rendSz, rendSz) == 0) {
+            return p;
         }
+        p = p->kov;
     }
-    return -1;
+    return NULL;
 }
 
 int autoTorles(Auto **autok, int *auto_db, const char *rendSz) {

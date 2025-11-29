@@ -43,7 +43,6 @@ Ugyfel* betoltUgyfelek(const char* filename, int *db) {
 }
 
 void felszabaditUgyfelek(Ugyfel *lista) {
-    (void)db; 
 
     Ugyfel *iter = lista;
     while (iter != NULL) {
@@ -56,31 +55,34 @@ void felszabaditUgyfelek(Ugyfel *lista) {
 
 
 
-void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel) {
+Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, int *db, const Ugyfel *ujUgyfel) {
     Ugyfel *uj = malloc(sizeof(Ugyfel));
     if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
-        return;
+        return ugyfelek;
     }
 
     strcpy(uj->nev, ujUgyfel->nev);
     strcpy(uj->email, ujUgyfel->email);
     strcpy(uj->telSz, ujUgyfel->telSz);
 
-    uj->kov = *ugyfelek;
-    *ugyfelek = uj;
+    uj->kov = ugyfelek;
 
     (*db)++;
+
+    return uj;
 }
 
 
-int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev) {
-    for (int i = 0; i < db; i++) {
-        if (strcmp(ugyfelek[i].nev, nev) == 0) {
-            return i;
+Ugyfel* ugyfelKeres(Ugyfel *ugyfelek, const char *nev) {
+    Ugyfel *p = ugyfelek;
+    while (p != NULL) {
+        if (strcmp(p->nev, nev) == 0) {
+            return p;
         }
+        p = p->kov;
     }
-    return -1;
+    return NULL;
 }
 
 void mentUgyfelek(const char *filename, Ugyfel *lista) {

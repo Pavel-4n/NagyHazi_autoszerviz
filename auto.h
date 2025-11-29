@@ -26,7 +26,7 @@ void felszabaditAutok(Auto *lista);
  * @param db - az autok szama 
  * @param ujAuto - az uj auto adatai egy Auto strukturaban
  */
-void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto);
+Auto* autoHozzaad(Auto *autok, int *db, const Auto *ujAuto);
 
 /**
  * autot keres egy felhasznalo altal megadott rendszam szerint
@@ -35,8 +35,7 @@ void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto);
  * @param rendSz - keresendo auto rendszama
  * @return keresett auto indexe vagy -1 ha nem volt sikeres a kereses
  */
-int autoKeres(Auto *autok, int db, const char *rendSz);
-
+Auto* autoKeres(Auto *autok, const char *rendSz);
 /**
  * Torol egy autot a listabol a megadott rendszam alapjan.
  * Kezeli a lista ujralancolasat es a memoria felszabaditasat is.

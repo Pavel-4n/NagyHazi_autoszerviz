@@ -9,7 +9,6 @@
 
 int main()
 {
-	// adatok beolvasasa, tomb meret valtozok inicializalasa
 	int ugyfel_db = 0, auto_db = 0, javitas_db = 0;
 
 	Ugyfel *ugyfelek = betoltUgyfelek("data/ugyfelek.txt", &ugyfel_db);
@@ -47,6 +46,11 @@ int main()
 
 			printf("ugyfel neve: ");
 			scanf(" %99[^\n]", nev);
+			
+			if (ugyfelKeres(ugyfelek, nev) != NULL) {
+					printf("HIBA: Ilyen nevu ugyfel mar letezik! Ellenorizd a nevet vagy adj hozza megkulombozo karaktert\n");
+					break;
+			}
 
 			printf("ugyfel email-cime: ");
 			scanf(" %99s", email);
@@ -56,15 +60,13 @@ int main()
 
 			Ugyfel uj;
 
-			// IDE NEM KELL malloc, csak masolas:
 			strcpy(uj.nev, nev);
 			strcpy(uj.email, email);
 			strcpy(uj.telSz, telSz);
 
-			// a kov pointert is illik inicializalni
 			uj.kov = NULL;
 
-			ugyfelHozzaad(&ugyfelek, &ugyfel_db, &uj);
+			ugyfelek = ugyfelHozzaad(ugyfelek, &ugyfel_db, &uj);
 			break;
 		}
 		case 2:
@@ -77,6 +79,10 @@ int main()
 			printf("auto rendszama: ");
 			scanf(" %99[^\n]", rendSz);
 
+			if (autoKeres(autok, rendSz) != NULL) {
+					printf("HIBA: Ilyen rendszamu auto mar letezik! Nem letezhet megeggyezo rendszamu auto\n");
+					break;
+			}
 			printf("auto modelje: ");
 			scanf(" %99[^\n]", model);
 
@@ -92,7 +98,7 @@ int main()
 			strcpy(ujAuto.vizsgaErv, vizsgaErv);
 			strcpy(ujAuto.tulajNev, tulajNev);
 
-			autoHozzaad(&autok, &auto_db, &ujAuto);
+			autok = autoHozzaad(autok, &auto_db, &ujAuto);
 			break;
 		}
 		case 3:
@@ -120,54 +126,54 @@ int main()
 			strcpy(ujJ.datum, datum);
 			ujJ.ar = ar;
 
-			javitasHozzaad(&javitasok, &javitas_db, &ujJ);
+			javitasok = javitasHozzaad(javitasok, &javitas_db, &ujJ);
 			break;
 		}
 		case 4:
 		{ // Kereses ugyfel neve szerint
 			char keresesNev[100];
-
 			printf("keresendo ugyfel neve: ");
 			scanf(" %99[^\n]", keresesNev);
 
-			int index = ugyfelKeres(ugyfelek, ugyfel_db, keresesNev);
+						
+			Ugyfel *talalat = ugyfelKeres(ugyfelek, keresesNev);
 
-			if (index == -1)
+			if (talalat == NULL) 
 			{
 				printf("Nincs ilyen nevu ugyfel!\n");
 			}
 			else
 			{
+								
 				printf("\nTalalat:\n");
-				printf("Nev  : %s\n", ugyfelek[index].nev);
-				printf("Email: %s\n", ugyfelek[index].email);
-				printf("Tel  : %s\n", ugyfelek[index].telSz);
+				printf("Nev  : %s\n", talalat->nev);
+				printf("Email: %s\n", talalat->email);
+				printf("Tel  : %s\n", talalat->telSz);
 				printf("\n\n");
 			}
-
 			break;
+
 		}
 
 		case 5:
 		{ // Kereses auto rendszam szerint
 			char keresesRendSz[50];
-
 			printf("keresendo auto rendszama: ");
 			scanf(" %99[^\n]", keresesRendSz);
 
-			int index = autoKeres(autok, auto_db, keresesRendSz);
+			Auto *talalat = autoKeres(autok, keresesRendSz);
 
-			if (index == -1)
+			if (talalat == NULL)
 			{
 				printf("Nincs ilyen rendszamu auto!\n");
 			}
 			else
 			{
 				printf("\nTalalat:\n");
-				printf("Rendszam  : %s\n", autok[index].rendSz);
-				printf("Model: %s\n", autok[index].model);
-				printf("Viszga ervenyessege  : %s\n", autok[index].vizsgaErv);
-				printf("Tulajdonos neve  : %s\n", autok[index].tulajNev);
+				printf("Rendszam  : %s\n", talalat->rendSz);
+				printf("Model: %s\n", talalat->model);
+				printf("Viszga ervenyessege  : %s\n", talalat->vizsgaErv);
+				printf("Tulajdonos neve  : %s\n", talalat->tulajNev);
 				printf("\n\n");
 			}
 			break;

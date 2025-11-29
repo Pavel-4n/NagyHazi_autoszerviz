@@ -54,20 +54,25 @@ void felszabaditJavitasok(Javitas *lista) {
     }
 }
 
-void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas){
+Javitas* javitasHozzaad(Javitas *javitasok, int *db, const Javitas *ujJavitas) {
     Javitas *uj = malloc(sizeof(Javitas));
-    if (uj == NULL){
+    if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
-        return;
+        return javitasok;
     }
+
     strcpy(uj->rendSz, ujJavitas->rendSz);
     strcpy(uj->tipus, ujJavitas->tipus);
     strcpy(uj->datum, ujJavitas->datum);
     uj->ar = ujJavitas->ar;
-    uj->kov = *javitasok;
-    *javitasok = uj;
+
+    uj->kov = javitasok;
+
     (*db)++;
+
+    return uj;
 }
+
 void mentJavitasok(const char *filename, Javitas *lista) {
     FILE *fp = fopen(filename, "w");
     if (!fp) {
