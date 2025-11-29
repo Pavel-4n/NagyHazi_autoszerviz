@@ -10,7 +10,7 @@
  * @param db - az olvasott autok szama
  * @return Auto lista feje (pointer az elso Auto elemre)
  */
-Auto* betoltAutok(const char* filename, int *db);
+Auto* betoltAutok(const char* filename);
 
 /**
  * Felszabaditja az autok lancolt listajat.
@@ -26,7 +26,7 @@ void felszabaditAutok(Auto *lista);
  * @param db - az autok szama 
  * @param ujAuto - az uj auto adatai egy Auto strukturaban
  */
-Auto* autoHozzaad(Auto *autok, int *db, const Auto *ujAuto);
+Auto* autoHozzaad(Auto *autok, const Auto *ujAuto);
 
 /**
  * autot keres egy felhasznalo altal megadott rendszam szerint
@@ -45,7 +45,7 @@ Auto* autoKeres(Auto *autok, const char *rendSz);
  * @param rendSz - a torlendo auto rendszama
  * @return 1 ha sikeres volt a torles, 0 ha nem talalhato az auto
  */
-int autoTorles(Auto **autok, int *auto_db, const char *rendSz);
+int autoTorles(Auto **autok, const char *rendSz);
 /**
  * megjeleniti egy auto szerviz tortenetet
  * @param autok - az autok tomje

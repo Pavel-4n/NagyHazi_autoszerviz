@@ -3,17 +3,14 @@
 #include "debugmalloc.h"
 #include "auto.h"
 
-
-Auto* betoltAutok(const char* filename, int *db) {
+Auto* betoltAutok(const char* filename) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         perror("fajl megnyitasa sikertelen");
-        *db = 0;
         return NULL;
     }
 
     Auto *lista = NULL;
-    *db = 0;
     char line[256];
 
     while (fgets(line, sizeof(line), fp) != NULL) {
@@ -38,7 +35,6 @@ Auto* betoltAutok(const char* filename, int *db) {
         uj->kov = lista;
         lista = uj;
 
-        (*db)++;
     }
 
     fclose(fp);
@@ -54,8 +50,7 @@ void felszabaditAutok(Auto *lista) {
     }
 }
 
-
-Auto* autoHozzaad(Auto *autok, int *db, const Auto *ujAuto) {
+Auto* autoHozzaad(Auto *autok, const Auto *ujAuto) {
     Auto *uj = malloc(sizeof(Auto));
     if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
@@ -69,12 +64,8 @@ Auto* autoHozzaad(Auto *autok, int *db, const Auto *ujAuto) {
     
     uj->kov = autok;
 
-    (*db)++;
-
     return uj; 
 }
-
-
 
 Auto* autoKeres(Auto *autok, const char *rendSz) {
     Auto *p = autok;
@@ -87,7 +78,7 @@ Auto* autoKeres(Auto *autok, const char *rendSz) {
     return NULL;
 }
 
-int autoTorles(Auto **autok, int *auto_db, const char *rendSz) {
+int autoTorles(Auto **autok, const char *rendSz) {
     Auto *p = *autok;
     Auto *prev = NULL;
 
@@ -107,12 +98,10 @@ int autoTorles(Auto **autok, int *auto_db, const char *rendSz) {
         prev->kov = p->kov;
 
     free(p);
-    (*auto_db)--;
 
     printf("Auto torolve: %s\n", rendSz);
     return 1;
 }
-
 
 void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz) {
     Auto *talaltAuto = NULL;
@@ -147,7 +136,6 @@ void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz) {
     }
 }
 
-
 void lejaroVizsgak(Auto *autok, const char *maiDatum) {
     int maiEv, maiHo, maiNap;
     if (sscanf(maiDatum, "%d-%d-%d", &maiEv, &maiHo, &maiNap) != 3) {
@@ -171,9 +159,9 @@ void lejaroVizsgak(Auto *autok, const char *maiDatum) {
             talalt = 1;
         }
     }
-
-    if (!talalt)
+    if (!talalt){
         printf("Minden autonak ervenyes a muszaki vizsgaja.\n");
+    }
 }
 
 void mentAutok(const char *filename, Auto *lista) {

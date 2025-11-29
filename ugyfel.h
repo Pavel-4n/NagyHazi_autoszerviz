@@ -10,7 +10,7 @@
  * @param db - az olvasott ugyfelek szama
  * @return Ugyfel lista feje (pointer az elso Ugyfel elemre)
  */
-Ugyfel* betoltUgyfelek(const char* filename, int *db);
+Ugyfel* betoltUgyfelek(const char* filename);
 
 /**
  * Felszabaditja az ugyfelek lancolt listajat.
@@ -26,7 +26,7 @@ void felszabaditUgyfelek(Ugyfel *lista);
  * @param db - az ugyfelek szama
  * @param ujUgyfel - az uj ugyfel adatai egy Ugyfel strukturaban
  */
-Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, int *db, const Ugyfel *ujUgyfel);
+Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, const Ugyfel *ujUgyfel);
 
 /**
  * ugyfelet keres a neve szerint

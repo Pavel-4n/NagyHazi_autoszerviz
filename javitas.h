@@ -10,7 +10,7 @@
  * @param db - az olvasott javitasok szama
  * @return Javitas lista feje (pointer az elso Javitas elemre)
  */
-Javitas* betoltJavitasok(const char* filename, int *db);
+Javitas* betoltJavitasok(const char* filename);
 
 /**
  * Felszabaditja a javitasok lancolt listajat.
@@ -26,7 +26,7 @@ void felszabaditJavitasok(Javitas *lista);
  * @param db - a javitasok szama (output)
  * @param ujJavitas - az uj javitas adatai egy Javitas strukturaban
  */
-Javitas* javitasHozzaad(Javitas *javitasok, int *db, const Javitas *ujJavitas);
+Javitas* javitasHozzaad(Javitas *javitasok, const Javitas *ujJavitas);
 /**
  * elmenti a javitasok listajat a megadott fajlba CSV formatumban.
  * (rendszam;tipus;datum;ar)
@@ -43,5 +43,5 @@ void mentJavitasok(const char *filename, Javitas *lista);/**
  * @param db - a javitasok szama (csokken a torolt elemek szamaval)
  * @param rendSz - a torlendo javitasokhoz tartozo auto rendszama
  */
-void javitasTorlesRendszamSzerint(Javitas **javitasok, int *db, const char *rendSz);
+void javitasTorlesRendszamSzerint(Javitas **javitasok, const char *rendSz);
 #endif

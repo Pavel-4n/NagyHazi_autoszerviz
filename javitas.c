@@ -3,16 +3,14 @@
 #include <string.h>
 #include "javitas.h"
 
-Javitas* betoltJavitasok(const char* filename, int *db) {
+Javitas* betoltJavitasok(const char* filename) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         perror("fajl megnyitasa sikertelen");
-        *db = 0;
         return NULL;
     }
 
     Javitas *lista = NULL;
-    *db = 0;
     char line[256];
 
     while (fgets(line, sizeof(line), fp) != NULL) {
@@ -37,8 +35,6 @@ Javitas* betoltJavitasok(const char* filename, int *db) {
 
         uj->kov = lista;
         lista = uj;
-
-        (*db)++;
     }
 
     fclose(fp);
@@ -54,7 +50,7 @@ void felszabaditJavitasok(Javitas *lista) {
     }
 }
 
-Javitas* javitasHozzaad(Javitas *javitasok, int *db, const Javitas *ujJavitas) {
+Javitas* javitasHozzaad(Javitas *javitasok, const Javitas *ujJavitas) {
     Javitas *uj = malloc(sizeof(Javitas));
     if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
@@ -67,8 +63,6 @@ Javitas* javitasHozzaad(Javitas *javitasok, int *db, const Javitas *ujJavitas) {
     uj->ar = ujJavitas->ar;
 
     uj->kov = javitasok;
-
-    (*db)++;
 
     return uj;
 }
@@ -88,8 +82,7 @@ void mentJavitasok(const char *filename, Javitas *lista) {
     fclose(fp);
 }
 
-void javitasTorlesRendszamSzerint(Javitas **javitasok, int *javitas_db, const char *rendSz)
-{
+void javitasTorlesRendszamSzerint(Javitas **javitasok, const char *rendSz){
     Javitas *p = *javitasok;
     Javitas *prev = NULL;
     int torolt_db = 0;
@@ -107,7 +100,6 @@ void javitasTorlesRendszamSzerint(Javitas **javitasok, int *javitas_db, const ch
             }
 
             free(torlendo);
-            (*javitas_db)--;
             torolt_db++;
         } else {
             prev = p;

@@ -9,11 +9,10 @@
 
 int main()
 {
-	int ugyfel_db = 0, auto_db = 0, javitas_db = 0;
 
-	Ugyfel *ugyfelek = betoltUgyfelek("data/ugyfelek.txt", &ugyfel_db);
-	Auto *autok = betoltAutok("data/autok.txt", &auto_db);
-	Javitas *javitasok = betoltJavitasok("data/javitasok.txt", &javitas_db);
+	Ugyfel *ugyfelek = betoltUgyfelek("data/ugyfelek.txt");
+	Auto *autok = betoltAutok("data/autok.txt");
+	Javitas *javitasok = betoltJavitasok("data/javitasok.txt");
 
 	int menuVal = 0;
 	while (1)
@@ -35,7 +34,9 @@ int main()
 		printf("9. Kilepes\n");
 		printf("Valassz egy menupontot: \n");
 		scanf("%d", &menuVal);
-
+		
+		while(getchar() != '\n');
+		
 		switch (menuVal)
 		{
 		case 1:
@@ -66,7 +67,7 @@ int main()
 
 			uj.kov = NULL;
 
-			ugyfelek = ugyfelHozzaad(ugyfelek, &ugyfel_db, &uj);
+			ugyfelek = ugyfelHozzaad(ugyfelek, &uj);
 			break;
 		}
 		case 2:
@@ -98,7 +99,7 @@ int main()
 			strcpy(ujAuto.vizsgaErv, vizsgaErv);
 			strcpy(ujAuto.tulajNev, tulajNev);
 
-			autok = autoHozzaad(autok, &auto_db, &ujAuto);
+			autok = autoHozzaad(autok, &ujAuto);
 			break;
 		}
 		case 3:
@@ -126,7 +127,7 @@ int main()
 			strcpy(ujJ.datum, datum);
 			ujJ.ar = ar;
 
-			javitasok = javitasHozzaad(javitasok, &javitas_db, &ujJ);
+			javitasok = javitasHozzaad(javitasok, &ujJ);
 			break;
 		}
 		case 4:
@@ -184,7 +185,7 @@ int main()
 					printf("Torolni kivant auto rendszama: ");
 					scanf(" %49s", torlendoRendSz);
 
-					int torolveVolt = autoTorles(&autok, &auto_db, torlendoRendSz);
+					int torolveVolt = autoTorles(&autok, torlendoRendSz);
 
 					if (torolveVolt) {
 							char valasz;
@@ -193,7 +194,7 @@ int main()
 							scanf(" %c", &valasz);
 
 							if (valasz == 'I' || valasz == 'i') {
-									javitasTorlesRendszamSzerint(&javitasok, &javitas_db, torlendoRendSz);
+									javitasTorlesRendszamSzerint(&javitasok, torlendoRendSz);
 							}
 					}
 
@@ -240,12 +241,11 @@ int main()
 					mentAutok("data/autok.txt", autok);
 					mentJavitasok("data/javitasok.txt", javitasok);
 
-					/* felszabaditasok (ha vannak ilyen függvényeid) */
-					felszabaditUgyfelek(ugyfelek);
+=					felszabaditUgyfelek(ugyfelek);
 					felszabaditAutok(autok);
 					felszabaditJavitasok(javitasok);
 
-					return 0; /* kilép a main-ből -- a program bezárul */
+					return 0;
 			}
 
 		default:

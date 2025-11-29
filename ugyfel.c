@@ -5,16 +5,14 @@
 #include "structs.h"
 
 
-Ugyfel* betoltUgyfelek(const char* filename, int *db) {
+Ugyfel* betoltUgyfelek(const char* filename) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         perror("fajl megnyitasa sikertelen");
-        *db = 0;
         return NULL;
     }
 
     Ugyfel *lista = NULL;
-    *db = 0;
     char line[256];
 
     while (fgets(line, sizeof(line), fp) != NULL) {
@@ -34,8 +32,6 @@ Ugyfel* betoltUgyfelek(const char* filename, int *db) {
 
         uj->kov = lista;
         lista = uj;
-
-        (*db)++;
     }
 
     fclose(fp);
@@ -55,7 +51,7 @@ void felszabaditUgyfelek(Ugyfel *lista) {
 
 
 
-Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, int *db, const Ugyfel *ujUgyfel) {
+Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, const Ugyfel *ujUgyfel) {
     Ugyfel *uj = malloc(sizeof(Ugyfel));
     if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
@@ -67,8 +63,6 @@ Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, int *db, const Ugyfel *ujUgyfel) {
     strcpy(uj->telSz, ujUgyfel->telSz);
 
     uj->kov = ugyfelek;
-
-    (*db)++;
 
     return uj;
 }
