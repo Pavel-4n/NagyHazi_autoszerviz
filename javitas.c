@@ -87,24 +87,32 @@ void javitasTorlesRendszamSzerint(Javitas **javitasok, int *javitas_db, const ch
 {
     Javitas *p = *javitasok;
     Javitas *prev = NULL;
+    int torolt_db = 0;
 
-    while (p != NULL && strcmp(p->rendSz, rendSz) != 0) {
-        prev = p;
-        p = p->kov;
+    while (p != NULL) {
+        if (strcmp(p->rendSz, rendSz) == 0) {
+            Javitas *torlendo = p;
+
+            if (prev == NULL) {
+                *javitasok = p->kov;
+                p = *javitasok;
+            } else {
+                prev->kov = p->kov;
+                p = p->kov; 
+            }
+
+            free(torlendo);
+            (*javitas_db)--;
+            torolt_db++;
+        } else {
+            prev = p;
+            p = p->kov;
+        }
     }
 
-    if (p == NULL) {
+    if (torolt_db > 0) {
+        printf("%d db javitas torolve a %s rendszamu autohoz.\n", torolt_db, rendSz);
+    } else {
         printf("Nincs ehhez az autohoz javitas: %s\n", rendSz);
-        return;
     }
-
-    if (prev == NULL)
-        *javitasok = p->kov;
-    else
-        prev->kov = p->kov;
-
-    free(p);
-    (*javitas_db)--;
-
-    printf("A javitas torolve a %s rendszamu autohoz.\n", rendSz);
 }

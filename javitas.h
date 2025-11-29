@@ -27,7 +27,21 @@ void felszabaditJavitasok(Javitas *lista);
  * @param ujJavitas - az uj javitas adatai egy Javitas strukturaban
  */
 void javitasHozzaad(Javitas **javitasok, int *db, const Javitas *ujJavitas);
-void mentJavitasok(const char *filename, Javitas *lista);
+/**
+ * elmenti a javitasok listajat a megadott fajlba CSV formatumban.
+ * (rendszam;tipus;datum;ar)
+ *
+ * @param filename - a kimeneti fajl neve (pl. data/javitasok.txt)
+ * @param lista - a javitasok listajanak feje
+ */
+void mentJavitasok(const char *filename, Javitas *lista);/**
+ * torli az osszes javitasi bejegyzest a listabol a megadott rendszam alapjan.
+ * Vegigmegy a teljes listan, es minden egyezo rendszamu elemet eltavolit
+ * es felszabadit, frissitve a lista szerkezetet.
+ *
+ * @param javitasok - a javitasok listajanak fejere mutato pointer cime (modosithato a fej)
+ * @param db - a javitasok szama (csokken a torolt elemek szamaval)
+ * @param rendSz - a torlendo javitasokhoz tartozo auto rendszama
+ */
 void javitasTorlesRendszamSzerint(Javitas **javitasok, int *db, const char *rendSz);
-
 #endif

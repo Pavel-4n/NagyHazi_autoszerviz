@@ -37,7 +37,12 @@ void ugyfelHozzaad(Ugyfel **ugyfelek, int *db, const Ugyfel *ujUgyfel);
  */
 int ugyfelKeres(Ugyfel *ugyfelek, int db, const char *nev);
 
-
-
+/**
+ * Elmenti az ugyfelek listajat a megadott fajlba CSV formatumban.
+ * (nev;email;telefonszam)
+ *
+ * @param filename - a kimeneti fajl neve (pl. data/ugyfelek.txt)
+ * @param lista - az ugyfelek listajanak feje
+ */
 void mentUgyfelek(const char *filename, Ugyfel *lista);
 #endif

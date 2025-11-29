@@ -42,7 +42,7 @@ Ugyfel* betoltUgyfelek(const char* filename, int *db) {
     return lista;
 }
 
-void felszabaditUgyfelek(Ugyfel *lista, int db) {
+void felszabaditUgyfelek(Ugyfel *lista) {
     (void)db; 
 
     Ugyfel *iter = lista;

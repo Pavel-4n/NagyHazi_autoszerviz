@@ -37,8 +37,16 @@ void autoHozzaad(Auto **autok, int *db, const Auto *ujAuto);
  */
 int autoKeres(Auto *autok, int db, const char *rendSz);
 
+/**
+ * Torol egy autot a listabol a megadott rendszam alapjan.
+ * Kezeli a lista ujralancolasat es a memoria felszabaditasat is.
+ *
+ * @param autok - az autok listajanak fejere mutato pointer cime (hogy a fej is modosithato legyen)
+ * @param auto_db - az autok szama (csokken eggyel sikeres torles eseten)
+ * @param rendSz - a torlendo auto rendszama
+ * @return 1 ha sikeres volt a torles, 0 ha nem talalhato az auto
+ */
 int autoTorles(Auto **autok, int *auto_db, const char *rendSz);
-
 /**
  * megjeleniti egy auto szerviz tortenetet
  * @param autok - az autok tomje
@@ -55,6 +63,12 @@ void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz);
  * @param auto_db - az autok szama
  */
 void lejaroVizsgak(Auto *autok, const char *maiDatum);
+/**
+ * Elmenti az autok listajat a megadott fajlba CSV formatumban.
+ * (rendszam;model;vizsga_datum;tulaj_nev)
+ *
+ * @param filename - a kimeneti fajl neve (pl. data/autok.txt)
+ * @param lista - az autok listajanak feje
+ */
 void mentAutok(const char *filename, Auto *lista);
-
 #endif
