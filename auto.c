@@ -26,7 +26,7 @@ Auto* betoltAutok(const char* filename) {
         }
 
         
-        sscanf(line, "%15[^;];%63[^;];%15[^;];%63s",
+        sscanf(line, "%15[^;];%63[^;];%15[^;];%63[^\n]",
                uj->rendSz,
                uj->model,
                uj->vizsgaErv,

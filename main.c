@@ -153,31 +153,44 @@ int main()
 			}
 			break;
 		}
-		case 4:
-		{ // Kereses ugyfel neve szerint
-			char keresesNev[100];
-			printf("keresendo ugyfel neve: ");
-			scanf(" %99[^\n]", keresesNev);
+			case 4:
+			{ // Kereses ugyfel neve szerint
+				char keresesNev[100];
+				printf("keresendo ugyfel neve: ");
+				scanf(" %99[^\n]", keresesNev);
 
-						
-			Ugyfel *talalat = ugyfelKeres(ugyfelek, keresesNev);
+				Ugyfel *talalat = ugyfelKeres(ugyfelek, keresesNev);
 
-			if (talalat == NULL) 
-			{
-				printf("Nincs ilyen nevu ugyfel!\n");
+				if (talalat == NULL) 
+				{
+					printf("Nincs ilyen nevu ugyfel!\n");
+				}
+				else
+				{
+					printf("\nTalalat:\n");
+					printf("Nev  : %s\n", talalat->nev);
+					printf("Email: %s\n", talalat->email);
+					printf("Tel  : %s\n", talalat->telSz);
+
+					printf("\nUgyfel autoi:\n");
+					int vanAuto = 0;
+					Auto *aktualisAuto = autok;
+
+					while (aktualisAuto != NULL) {
+						if (strcmp(aktualisAuto->tulajNev, talalat->nev) == 0) {
+							printf(" - Rendszam: %s, Tipus: %s\n", aktualisAuto->rendSz, aktualisAuto->model);
+							vanAuto = 1;
+						}
+						aktualisAuto = aktualisAuto->kov;
+					}
+
+					if (!vanAuto) {
+						printf(" Nincs az ugyfel neven rogzitett auto.\n");
+					}
+					printf("\n\n");
+				}
+				break;
 			}
-			else
-			{
-								
-				printf("\nTalalat:\n");
-				printf("Nev  : %s\n", talalat->nev);
-				printf("Email: %s\n", talalat->email);
-				printf("Tel  : %s\n", talalat->telSz);
-				printf("\n\n");
-			}
-			break;
-
-		}
 
 		case 5:
 		{ // Kereses auto rendszam szerint

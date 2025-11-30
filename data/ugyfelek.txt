@@ -1,5 +1,5 @@
-Nagy Peter;nagy.peter@email.com;+36301234567
-Kiss Maria;kiss.maria@email.hu;+36709876543
-Kovacs Janos;kovacs.j@gmail.com;+36205551212
-Szabo Eva;eva.szabo@peldamail.net;+36309998888
 Teszt Elek;Tezt@email.com;06205983458
+Szabo Eva;eva.szabo@peldamail.net;+36309998888
+Kovacs Janos;kovacs.j@gmail.com;+36205551212
+Kiss Maria;kiss.maria@email.hu;+36709876543
+Nagy Peter;nagy.peter@email.com;+36301234567
