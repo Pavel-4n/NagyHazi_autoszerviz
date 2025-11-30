@@ -17,7 +17,7 @@ int main()
 	int menuVal = 0;
 	while (1)
 	{
-		printf("Autoszerviz V1.17\n");
+		printf("Autoszerviz Program\n");
 		printf("1. Ugyfel hozzadasa\n");
 		printf("2. Auto hozzaadasa\n");
 		printf("3. Javitas hozzaadasa\n");

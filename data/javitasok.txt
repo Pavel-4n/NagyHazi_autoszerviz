@@ -1,4 +1,10 @@
-GHI-789;Vezermuszij csere;2024-10-25;110000
-DEF-456;Teli gumi csere;2024-11-14;12000
-TST-111;Teli gumi csere;2025-1--14;26899
+FLT-001;Eves szerviz;2024-05-20;65000
+ACC-123;Teli gumi csere;2024-11-15;12000
+ACC-123;Muszaki vizsga;2024-10-01;30000
+ACC-123;Kuplung javitas;2024-06-20;150000
+ACC-123;Fekbetet csere;2024-03-15;45000
+ACC-123;Olajcsere;2024-01-10;35000
 TST-111;Szelvedo csere;2024-11-12;78999
+TST-111;Teli gumi csere;2025-01-14;26899
+DEF-456;Teli gumi csere;2024-11-14;12000
+GHI-789;Vezermuszij csere;2024-10-25;110000
