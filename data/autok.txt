@@ -1,10 +1,10 @@
-FLT-003;Ford Transit;2024-12-05;Toth Gabor
-FLT-002;Volkswagen Golf;2025-09-15;Toth Gabor
-FLT-001;Volkswagen Passat;2026-03-20;Toth Gabor
-RRR-999;Opel Astra;2025-06-10;Kiss Akos
-TST-111;Honda Civic Type R;2025-11-24;Nagy Andor
-DEF-456;Suzuki Vitara;2026-05-15;Kiss Maria
-GHI-789;Ford Focus;2024-12-01;Kovacs Janos
-JKL-001;Toyota Corolla;2027-01-20;Nagy Peter
-XYZ-987;Skoda Octavia;2025-08-30;Szabo Eva
 ACC-123;Ford Focus;2025-11-11;Nagy Peter
+XYZ-987;Skoda Octavia;2025-08-30;Szabo Eva
+JKL-001;Toyota Corolla;2027-01-20;Nagy Peter
+GHI-789;Ford Focus;2024-12-01;Kovacs Janos
+DEF-456;Suzuki Vitara;2026-05-15;Kiss Maria
+TST-111;Honda Civic Type R;2025-11-24;Nagy Andor
+RRR-999;Opel Astra;2025-06-10;Kiss Akos
+FLT-001;Volkswagen Passat;2026-03-20;Toth Gabor
+FLT-002;Volkswagen Golf;2025-09-15;Toth Gabor
+FLT-003;Ford Transit;2024-12-05;Toth Gabor
