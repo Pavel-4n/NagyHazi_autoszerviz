@@ -277,7 +277,7 @@ int main()
 					return 0;
 				} else {
 					printf("Megszakitva. \n");
-					valasztas = 0;
+					valasz = 0;
 					break;
 				}
 					
