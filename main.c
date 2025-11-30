@@ -17,12 +17,7 @@ int main()
 	int menuVal = 0;
 	while (1)
 	{
-		printf("                 _                               _     \n");
-		printf("     /\\        | |                             (_)    \n");
-		printf("    /  \\  _   _| |_ ___  ___ _______ _ ____   ___ ____\n");
-		printf("   / /\\ \\| | | | __/ _ \\/ __|_  / _ \\ '__\\ \\ / / |_  /\n");
-		printf("  / ____ \\ |_| | || (_) \\__ \\/ /  __/ |   \\ V /| |/ / \n");
-		printf(" /_/    \\_\\__,_|\\__\\___/|___/___\\___|_|    \\_/ |_/___| \n");
+		printf("Autoszerviz V1.17\n");
 		printf("1. Ugyfel hozzadasa\n");
 		printf("2. Auto hozzaadasa\n");
 		printf("3. Javitas hozzaadasa\n");
