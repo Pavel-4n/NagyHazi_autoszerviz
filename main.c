@@ -29,9 +29,10 @@ int main()
 		printf("9. Kilepes\n");
 		printf("Valassz egy menupontot: \n");
 		scanf("%d", &menuVal);
-		
-		while(getchar() != '\n');
-		
+
+		while (getchar() != '\n')
+			;
+
 		switch (menuVal)
 		{
 		case 1:
@@ -41,11 +42,12 @@ int main()
 			char telSz[50];
 
 			printf("ugyfel neve: ");
-			scanf(" %99[^\n]", nev);
-			
-			if (ugyfelKeres(ugyfelek, nev) != NULL) {
-					printf("HIBA: Ilyen nevu ugyfel mar letezik! Ellenorizd a nevet vagy adj hozza megkulombozo karaktert\n");
-					break;
+			scanf(" %99[^\n]", nev); /* szokozoket is tartalmazo nev beolvasasa biztonsagosan */
+
+			if (ugyfelKeres(ugyfelek, nev) != NULL)
+			{
+				printf("HIBA: Ilyen nevu ugyfel mar letezik! Ellenorizd a nevet vagy adj hozza megkulombozo karaktert\n");
+				break; /* ha mar letezik, nem engedjuk hozzadni */
 			}
 
 			printf("ugyfel email-cime: ");
@@ -58,19 +60,22 @@ int main()
 
 			strcpy(uj.nev, nev);
 			strcpy(uj.email, email);
-			strcpy(uj.telSz, telSz);
+			strcpy(uj.telSz, telSz); /* adatok osszegyujtese */
 
 			uj.kov = NULL;
-			
+
 			printf("\nBiztosan hozza akarod adni? (I/N): ");
 
 			char valasz;
 			scanf(" %c", &valasz);
 
-			if (valasz == 'I' || valasz == 'i') {
-				ugyfelek = ugyfelHozzaad(ugyfelek, &uj);
+			if (valasz == 'I' || valasz == 'i')
+			{
+				ugyfelek = ugyfelHozzaad(ugyfelek, &uj); /* megerosites utan beillesztjuk a listaba */
 				printf("Sikeresen rogzitve!\n");
-			} else {
+			}
+			else
+			{
 				printf("Megszakitva.\n");
 			}
 			break;
@@ -83,11 +88,12 @@ int main()
 			char tulajNev[100];
 
 			printf("auto rendszama: ");
-			scanf(" %99[^\n]", rendSz);
+			scanf(" %99[^\n]", rendSz); /* szokozoket is tartalmazo beolvasas biztonsagosan */
 
-			if (autoKeres(autok, rendSz) != NULL) {
-					printf("HIBA: Ilyen rendszamu auto mar letezik! Nem letezhet megeggyezo rendszamu auto\n");
-					break;
+			if (autoKeres(autok, rendSz) != NULL)
+			{
+				printf("HIBA: Ilyen rendszamu auto mar letezik! Nem letezhet megeggyezo rendszamu auto\n");
+				break; /* mar letezik, nem engedjuk duplikalni */
 			}
 			printf("auto modelje: ");
 			scanf(" %99[^\n]", model);
@@ -102,16 +108,19 @@ int main()
 			strcpy(ujAuto.rendSz, rendSz);
 			strcpy(ujAuto.model, model);
 			strcpy(ujAuto.vizsgaErv, vizsgaErv);
-			strcpy(ujAuto.tulajNev, tulajNev);
+			strcpy(ujAuto.tulajNev, tulajNev); /* adatok osszegyujtese */
 
 			printf("\nBiztosan hozza akarod adni? (I/N): ");
 			char valasz;
 			scanf(" %c", &valasz);
 
-			if (valasz == 'I' || valasz == 'i') {
-				autok = autoHozzaad(autok, &ujAuto);
+			if (valasz == 'I' || valasz == 'i')
+			{
+				autok = autoHozzaad(autok, &ujAuto); /* megerosites utan beillesztjuk a listaba */
 				printf("Sikeresen rogzitve!\n");
-			} else {
+			}
+			else
+			{
 				printf("Megszakitva. \n");
 			}
 			break;
@@ -138,71 +147,77 @@ int main()
 			Javitas ujJ;
 			strcpy(ujJ.rendSz, rendSz);
 			strcpy(ujJ.tipus, tipus);
-			strcpy(ujJ.datum, datum);
+			strcpy(ujJ.datum, datum); /* adatok osszegyujtese */
 			ujJ.ar = ar;
 
 			printf("\nBiztosan hozza akarod adni? (I/N): ");
 			char valasz;
 			scanf(" %c", &valasz);
 
-			if (valasz == 'I' || valasz == 'i') {
-				javitasok = javitasHozzaad(javitasok, &ujJ);
+			if (valasz == 'I' || valasz == 'i')
+			{
+				javitasok = javitasHozzaad(javitasok, &ujJ); /* megerosites utan beillesztjuk a listaba */
 				printf("Sikeresen rogzitve!\n");
-			} else {
+			}
+			else
+			{
 				printf("Megszakitva. \n");
 			}
 			break;
 		}
-			case 4:
-			{ // Kereses ugyfel neve szerint
-				char keresesNev[100];
-				printf("keresendo ugyfel neve: ");
-				scanf(" %99[^\n]", keresesNev);
+		case 4:
+		{ // Kereses ugyfel neve szerint
+			char keresesNev[100];
+			printf("keresendo ugyfel neve: ");
+			scanf(" %99[^\n]", keresesNev); /* nev beolvasasa, szokozokkel egyutt */
 
-				Ugyfel *talalat = ugyfelKeres(ugyfelek, keresesNev);
+			Ugyfel *talalat = ugyfelKeres(ugyfelek, keresesNev);
 
-				if (talalat == NULL) 
-				{
-					printf("Nincs ilyen nevu ugyfel!\n");
-				}
-				else
-				{
-					printf("\nTalalat:\n");
-					printf("Nev  : %s\n", talalat->nev);
-					printf("Email: %s\n", talalat->email);
-					printf("Tel  : %s\n", talalat->telSz);
-
-					printf("\nUgyfel autoi:\n");
-					int vanAuto = 0;
-					Auto *aktualisAuto = autok;
-
-					while (aktualisAuto != NULL) {
-						if (strcmp(aktualisAuto->tulajNev, talalat->nev) == 0) {
-							printf(" - Rendszam: %s, Tipus: %s\n", aktualisAuto->rendSz, aktualisAuto->model);
-							vanAuto = 1;
-						}
-						aktualisAuto = aktualisAuto->kov;
-					}
-
-					if (!vanAuto) {
-						printf(" Nincs az ugyfel neven rogzitett auto.\n");
-					}
-					printf("\n\n");
-				}
-				break;
+			if (talalat == NULL)
+			{
+				printf("Nincs ilyen nevu ugyfel!\n"); /* nem talaltuk a listaban */
 			}
+			else
+			{
+				printf("\nTalalat:\n");
+				printf("Nev  : %s\n", talalat->nev);
+				printf("Email: %s\n", talalat->email);
+				printf("Tel  : %s\n", talalat->telSz);
+
+				printf("\nUgyfel autoi:\n");
+				int vanAuto = 0;
+				Auto *aktualisAuto = autok;
+
+				while (aktualisAuto != NULL)
+				{
+					if (strcmp(aktualisAuto->tulajNev, talalat->nev) == 0)
+					{ /* megkeressuk az ugyfelhez tartozo autokat a masik listabol */
+						printf(" - Rendszam: %s, Tipus: %s\n", aktualisAuto->rendSz, aktualisAuto->model);
+						vanAuto = 1; /* rogzitjuk, hogy van legalabb egy autoja */
+					}
+					aktualisAuto = aktualisAuto->kov;
+				}
+
+				if (!vanAuto)
+				{
+					printf(" Nincs az ugyfel neven rogzitett auto.\n");
+				}
+				printf("\n\n");
+			}
+			break;
+		}
 
 		case 5:
 		{ // Kereses auto rendszam szerint
 			char keresesRendSz[50];
 			printf("keresendo auto rendszama: ");
-			scanf(" %99[^\n]", keresesRendSz);
+			scanf(" %99[^\n]", keresesRendSz); /* keresett rendszam beolvasasa */
 
 			Auto *talalat = autoKeres(autok, keresesRendSz);
 
 			if (talalat == NULL)
 			{
-				printf("Nincs ilyen rendszamu auto!\n");
+				printf("Nincs ilyen rendszamu auto!\n"); /* nem talaltuk a listaban */
 			}
 			else
 			{
@@ -215,27 +230,33 @@ int main()
 			}
 			break;
 		}
-			case 6: { // Auto torlese
-					char torlendoRendSz[50];
+		case 6:
+		{ // Auto torlese
+			char torlendoRendSz[50];
 
-					printf("Torolni kivant auto rendszama: ");
-					scanf(" %49s", torlendoRendSz);
+			printf("Torolni kivant auto rendszama: ");
+			scanf(" %49s", torlendoRendSz);
 
-					int torolveVolt = autoTorles(&autok, torlendoRendSz);
+			printf("Biztosan torolni akarod az autot? (I/N): "); /* biztonsagi kerdes, hogy ne toroljunk veletlenul */
+			char valasz;
+			scanf(" %c", &valasz);
+			if (valasz == 'I' || valasz == 'i')
+			{
 
-					if (torolveVolt) {
-							char valasz;
-
-							printf("Akarod a hozza tartozo javitasokat is torolni? (I/N): ");
-							scanf(" %c", &valasz);
-
-							if (valasz == 'I' || valasz == 'i') {
-									javitasTorlesRendszamSzerint(&javitasok, torlendoRendSz);
-							}
-					}
-
-					break;
+				autoTorles(&autok, torlendoRendSz); /* kitoroljuk az autot a listabol */
+				printf("Akarod a hozza tartozo javitasokat is torolni? (I/N): ");
+				scanf(" %c", &valasz);
+				if (valasz == 'I' || valasz == 'i')
+				{
+					javitasTorlesRendszamSzerint(&javitasok, torlendoRendSz); /* a konzisztencia erdekeben a kapcsolodo adatokat is toroljuk ha a felhasznalo akarja */
+				}
 			}
+			else
+			{
+				printf("Megszakitva, nem tortent torles.\n");
+			}
+			break;
+		}
 
 		case 7:
 		{ // Auto szerviz tortenet
@@ -244,7 +265,7 @@ int main()
 			printf("melyik auto szerviz tortenete erdekel (rendszam): ");
 			scanf(" %49s", keresettRendSz);
 
-			autoSzervizTortenet(autok, javitasok, keresettRendSz);
+			autoSzervizTortenet(autok, javitasok, keresettRendSz); /* a megadott autohoz tartozo osszes javitas kilistazasa */
 			break;
 		}
 
@@ -253,7 +274,7 @@ int main()
 			char maiInput[100];
 
 			printf("Add meg a mai datumot (YYYY-MM-DD): ");
-			scanf(" %99s", maiInput);
+			scanf(" %99s", maiInput); /* datum beolvasasa */
 
 			int n = strlen(maiInput) + 1;
 
@@ -264,37 +285,40 @@ int main()
 				break;
 			}
 
-			strcpy(maiDatum, maiInput);
+			strcpy(maiDatum, maiInput); /* atmasoljuk a datumot a dinamikus teruletre */
 
-			lejaroVizsgak(autok, maiDatum);
+			lejaroVizsgak(autok, maiDatum); /* lejart vizsgaju autok keresese es kiirasa */
 
-			free(maiDatum);
+			free(maiDatum); /* lefoglalt memoria felszabaditasa */
 			break;
 		}
-		case 9: { // Kilepes
-				printf("Kilepes...\n");
+		case 9:
+		{ // Kilepes
+			printf("Kilepes...\n");
 
-				printf("\nBiztosan ki szeretnel lepni? (I/N): ");
-				char valasz;
-				scanf(" %c", &valasz);
+			printf("\nBiztosan ki szeretnel lepni? (I/N): ");
+			char valasz;
+			scanf(" %c", &valasz);
 
-				if (valasz == 'I' || valasz == 'i') {
-					mentUgyfelek("data/ugyfelek.txt", ugyfelek);
-					mentAutok("data/autok.txt", autok);
-					mentJavitasok("data/javitasok.txt", javitasok);
+			if (valasz == 'I' || valasz == 'i')
+			{
+				mentUgyfelek("data/ugyfelek.txt", ugyfelek);
+				mentAutok("data/autok.txt", autok);
+				mentJavitasok("data/javitasok.txt", javitasok); /* minden valtozas mentese fajlba a kilepes elott */
 
-					felszabaditUgyfelek(ugyfelek);
-					felszabaditAutok(autok);
-					felszabaditJavitasok(javitasok);						
-					printf("mentve\n");
-					return 0;
-				} else {
-					printf("Megszakitva. \n");
-					valasz = 0;
-					break;
-				}
-					
+				felszabaditUgyfelek(ugyfelek);
+				felszabaditAutok(autok);
+				felszabaditJavitasok(javitasok); /* dinamikusan foglalt memoria felszabaditasa */
+				printf("mentve\n");
+				return 0; /*  kilepunk a programbol */
 			}
+			else
+			{
+				printf("Megszakitva. \n");
+				valasz = 0;
+				break; /* ha megsem lepunk ki, visszaterunk a fomenuhoz */
+			}
+		}
 
 		default:
 			printf("Valasztott menu: %d\n", menuVal);
@@ -306,5 +330,5 @@ int main()
 	felszabaditAutok(autok);
 	felszabaditJavitasok(javitasok);
 
-	return 0;
+	return 0; /*  kilepunk a programbol */
 }

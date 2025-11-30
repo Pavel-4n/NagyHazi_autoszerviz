@@ -16,13 +16,13 @@ Ugyfel* betoltUgyfelek(const char* filename) {
     char line[256];
 
     while (fgets(line, sizeof(line), fp) != NULL) {
-        line[strcspn(line, "\n")] = 0;
+        line[strcspn(line, "\n")] = 0;  /* enter levagasa a sor vegerol */
 
-        Ugyfel *uj = malloc(sizeof(Ugyfel));
+        Ugyfel *uj = (Ugyfel*) malloc(sizeof(Ugyfel));
         if (uj == NULL) {
             printf("memoria foglalasa sikertelen\n");
             fclose(fp);
-            return lista;
+            return lista;  /* ha van hiba, a mar beolvasott adatokat azert visszaadjuk */
         }
 
         sscanf(line, "%63[^;];%63[^;];%63s",
@@ -31,7 +31,7 @@ Ugyfel* betoltUgyfelek(const char* filename) {
                uj->telSz);
 
         uj->kov = lista;
-        lista = uj;
+        lista = uj;  /* befuzes a lista elejere */
     }
 
     fclose(fp);
@@ -42,27 +42,25 @@ void felszabaditUgyfelek(Ugyfel *lista) {
 
     Ugyfel *iter = lista;
     while (iter != NULL) {
-        Ugyfel *kov = iter->kov;
+        Ugyfel *kov = iter->kov;  /* menjtuk a kovetkezot, mielott a jelenlegit felszabaditjuk */
         free(iter);
         iter = kov;
     }
 }
 
 
-
-
 Ugyfel* ugyfelHozzaad(Ugyfel *ugyfelek, const Ugyfel *ujUgyfel) {
-    Ugyfel *uj = malloc(sizeof(Ugyfel));
+    Ugyfel *uj = (Ugyfel*) malloc(sizeof(Ugyfel));
     if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
-        return ugyfelek;
+        return ugyfelek;  /* hiba eseten az eredeti listaval terunk vissza */
     }
 
     strcpy(uj->nev, ujUgyfel->nev);
     strcpy(uj->email, ujUgyfel->email);
     strcpy(uj->telSz, ujUgyfel->telSz);
 
-    uj->kov = ugyfelek;
+    uj->kov = ugyfelek;  /* az uj elem kerul a lista elejere */
 
     return uj;
 }
@@ -72,22 +70,22 @@ Ugyfel* ugyfelKeres(Ugyfel *ugyfelek, const char *nev) {
     Ugyfel *p = ugyfelek;
     while (p != NULL) {
         if (strcmp(p->nev, nev) == 0) {
-            return p;
+            return p;  /* megtalaltuk az ugyfelet */
         }
         p = p->kov;
     }
-    return NULL;
+    return NULL;  /* nem szerepel ilyen nev a listaban */
 }
 
 void mentUgyfelek(const char *filename, Ugyfel *lista) {
     FILE *fp = fopen(filename, "w");
     if (!fp) {
         printf("Hiba: nem tudom megnyitni a %s fajlt!\n", filename);
-        return;
+        return;  /* ha nem sikerult megnyitni, nem tudunk menteni, kilepunk */
     }
 
     for (Ugyfel *p = lista; p != NULL; p = p->kov) {
-        fprintf(fp, "%s;%s;%s\n", p->nev, p->email, p->telSz);
+        fprintf(fp, "%s;%s;%s\n", p->nev, p->email, p->telSz);  /* pontosvesszovel elvalasztva irjuk ki az adatokat */
     }
 
     fclose(fp);

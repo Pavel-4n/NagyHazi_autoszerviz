@@ -14,13 +14,13 @@ Javitas* betoltJavitasok(const char* filename) {
     char line[256];
 
     while (fgets(line, sizeof(line), fp) != NULL) {
-        line[strcspn(line, "\n")] = 0;
+        line[strcspn(line, "\n")] = 0;  /* enter levagasa a sor vegerol */
 
-        Javitas *uj = malloc(sizeof(Javitas));
+        Javitas *uj = (Javitas*) malloc(sizeof(Javitas));
         if (uj == NULL) {
             printf("memoria foglalasa sikertelen\n");
             fclose(fp);
-            return lista;
+            return lista;  /* ha van hiba, a mar beolvasott adatokat azert visszaadjuk */
         }
 
         if (sscanf(line, "%15[^;];%63[^;];%15[^;];%d",
@@ -28,13 +28,13 @@ Javitas* betoltJavitasok(const char* filename) {
                    uj->tipus,
                    uj->datum,
                    &uj->ar) != 4) {
-            printf("hibas sor a javitasok fajlban, kihagyom: %s\n", line);
-            free(uj);
+            printf("hibas sor\n");
+            free(uj);  /* hibas sor eseten felszabaditjuk a lefoglalt teruletet */
             continue;
         }
 
         uj->kov = lista;
-        lista = uj;
+        lista = uj;  /* befuzes a lista elejere */
     }
 
     fclose(fp);
@@ -44,17 +44,17 @@ Javitas* betoltJavitasok(const char* filename) {
 void felszabaditJavitasok(Javitas *lista) {
     Javitas *iter = lista;
     while (iter != NULL) {
-        Javitas *kov = iter->kov;
+        Javitas *kov = iter->kov; /* mentjuk a kovetkezot, mielott a jelenlegit felszabaditjuk */
         free(iter);
         iter = kov;
     }
 }
 
 Javitas* javitasHozzaad(Javitas *javitasok, const Javitas *ujJavitas) {
-    Javitas *uj = malloc(sizeof(Javitas));
+    Javitas *uj = (Javitas*) (Javitas*) malloc(sizeof(Javitas));
     if (uj == NULL) {
         printf("Memoria foglalasi hiba!\n");
-        return javitasok;
+        return javitasok;  /* hiba eseten az eredeti listaval terunk vissza */
     }
 
     strcpy(uj->rendSz, ujJavitas->rendSz);
@@ -62,7 +62,7 @@ Javitas* javitasHozzaad(Javitas *javitasok, const Javitas *ujJavitas) {
     strcpy(uj->datum, ujJavitas->datum);
     uj->ar = ujJavitas->ar;
 
-    uj->kov = javitasok;
+    uj->kov = javitasok;  /* az uj elem kerul a lista elejere */
 
     return uj;
 }
@@ -71,12 +71,12 @@ void mentJavitasok(const char *filename, Javitas *lista) {
     FILE *fp = fopen(filename, "w");
     if (!fp) {
         printf("Hiba: nem tudom megnyitni a %s fajlt!\n", filename);
-        return;
+        return;  /* ha nem sikerult megnyitni, nem tudunk menteni, kilepunk */
     }
 
     for (Javitas *p = lista; p != NULL; p = p->kov) {
         fprintf(fp, "%s;%s;%s;%d\n",
-                p->rendSz, p->tipus, p->datum, p->ar);
+                p->rendSz, p->tipus, p->datum, p->ar);  /* pontosvesszovel elvalasztva irjuk ki az adatokat */
     }
 
     fclose(fp);
@@ -92,18 +92,18 @@ void javitasTorlesRendszamSzerint(Javitas **javitasok, const char *rendSz){
             Javitas *torlendo = p;
 
             if (prev == NULL) {
-                *javitasok = p->kov;
+                *javitasok = p->kov;  /* az elso elemet toroljuk, ezert a lista fejet modositjuk */
                 p = *javitasok;
             } else {
-                prev->kov = p->kov;
+                prev->kov = p->kov;  /* atugorjuk a torlendo elemet */
                 p = p->kov; 
             }
 
-            free(torlendo);
+            free(torlendo);  /* memoria felszabaditasa */
             torolt_db++;
         } else {
             prev = p;
-            p = p->kov;
+            p = p->kov;  /* ha nem toroltunk, lephetunk a kovetkezore */
         }
     }
 

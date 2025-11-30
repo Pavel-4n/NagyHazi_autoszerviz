@@ -1,4 +1,4 @@
-TST-111;Szelvedo csere;2024-11-12;78999
-TST-111;Teli gumi csere;2025-1--14;26899
-DEF-456;Teli gumi csere;2024-11-14;12000
 GHI-789;Vezermuszij csere;2024-10-25;110000
+DEF-456;Teli gumi csere;2024-11-14;12000
+TST-111;Teli gumi csere;2025-1--14;26899
+TST-111;Szelvedo csere;2024-11-12;78999
