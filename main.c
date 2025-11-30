@@ -258,17 +258,29 @@ int main()
 			free(maiDatum);
 			break;
 		}
-			case 9: { // Kilepes
-					printf("Kilepes...\n");
+		case 9: { // Kilepes
+				printf("Kilepes...\n");
+
+				printf("\nBiztosan ki szeretnel lepni? (I/N): ");
+				char valasz;
+				scanf(" %c", &valasz);
+
+				if (valasz == 'I' || valasz == 'i') {
 					mentUgyfelek("data/ugyfelek.txt", ugyfelek);
 					mentAutok("data/autok.txt", autok);
 					mentJavitasok("data/javitasok.txt", javitasok);
 
 					felszabaditUgyfelek(ugyfelek);
 					felszabaditAutok(autok);
-					felszabaditJavitasok(javitasok);
-
+					felszabaditJavitasok(javitasok);						
+					printf("mentve\n");
 					return 0;
+				} else {
+					printf("Megszakitva. \n");
+					valasztas = 0;
+					break;
+				}
+					
 			}
 
 		default:

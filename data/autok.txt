@@ -1,5 +1,5 @@
-XYZ-987;Skoda Octavia;2025-08-30;Szabo
-JKL-001;Toyota Corolla;2027-01-20;Nagy
-GHI-789;Ford Focus;2024-12-01;Kovacs
-DEF-456;Suzuki Vitara;2026-05-15;Kiss
 ABC-123;Opel Astra H;2025-10-31;Nagy
+DEF-456;Suzuki Vitara;2026-05-15;Kiss
+GHI-789;Ford Focus;2024-12-01;Kovacs
+JKL-001;Toyota Corolla;2027-01-20;Nagy
+XYZ-987;Skoda Octavia;2025-08-30;Szabo
