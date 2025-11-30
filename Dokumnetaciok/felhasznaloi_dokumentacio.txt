@@ -1,11 +1,14 @@
 Felhasználói Dokumentáció – Autószerviz Nyilvántartó Rendszer
 
 1. A program feladata
----------------------
 Az Autószerviz Nyilvántartó Rendszer egy konzolos alkalmazás, amelynek célja egy kisebb autószerviz mindennapi adminisztrációjának megkönnyítése. A program segítségével a szerviz dolgozói nyilvántarthatják az ügyfeleket, a gépjárműveket és az elvégzett javításokat. Lehetőség van a műszaki vizsgák érvényességének nyomon követésére és a korábbi szerviztörténet lekérdezésére is.
 
 2. A program indítása
----------------------
+Visual Studio:
+1. Create new project
+2. Console app C++ (C-t is tud futtaatni)
+3. Jobb eger gombal kattintunk a projekt nevere, Add->Existing item, kijeloljuk az osszes .c .h filet, es a data mappat  is.
+4. Jobb eger gombal kattintunk a projekt nevere, properties->c/c++ ->preprocessor -> Preprocessor Definitions -> bemasoljuk azt, hogy ,_CRT_SECURE_NO_WARNINGS -> Ok
 A programot parancssorból vagy terminálablakból lehet elindítani a futtatható állomány (autoszerviz.exe vagy ./autoszerviz) meghívásával.
 
 Indítás parancssorból:
