@@ -63,12 +63,12 @@ Auto* autoHozzaad(Auto *autok, const Auto *ujAuto) {
 }
 
 Auto* autoKeres(Auto *autok, const char *rendSz) {
-    Auto *p = autok;
-    while (p != NULL) {
-        if (strcmp(p->rendSz, rendSz) == 0) {
-            return p;  /* megtalaltuk az autot */
+    Auto *p = autok; //lista elso eleme
+    while (p != NULL) { //amig vannak elemek
+        if (strcmp(p->rendSz, rendSz) == 0) { //ha eggyezik a keresett rendszam az aktualis elemmel
+            return p;  /* megtalaltuk az autot */ 
         }
-        p = p->kov;
+        p = p->kov; //kovetkezo elemre lepes
     }
     return NULL;  /* nem talat a rendszam */
 }
@@ -99,11 +99,11 @@ int autoTorles(Auto **autok, const char *rendSz) {
 }
 
 void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz) {
-    Auto *talaltAuto = NULL;
+    Auto *talaltAuto = NULL; // itt fogjuk tarolni azt az egy autot amit talalunk
 
-    for (Auto *n = autok; n != NULL; n = n->kov) {
-        if (strcmp(n->rendSz, rendSz) == 0) {
-            talaltAuto = n;
+    for (Auto *n = autok; n != NULL; n = n->kov) { //bealitjuk az n pointert az autok elso elemere, amig n nem nulla, lepunk a kovetkezo elemre
+        if (strcmp(n->rendSz, rendSz) == 0) { //osszehasolnitjuk, 0 kaupunk akkor egyeznek
+            talaltAuto = n; //aatalitjuk a talaltauto pointert a talat autora
             break;  /* megtalaltuk az autot, kilepunk a keresesbol */
         }
     }
@@ -118,8 +118,8 @@ void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz) {
 
     int volt = 0;
 
-    for (Javitas *k = javitasok; k != NULL; k = k->kov) {
-        if (strcmp(k->rendSz, rendSz) == 0) {
+    for (Javitas *k = javitasok; k != NULL; k = k->kov) { //beallitjuk a javitasok elso elemere, amig k nem nulla, lepunk a kovetkezo elemre
+        if (strcmp(k->rendSz, rendSz) == 0) { //ahol eggyezik a rendszam aott kiiratjuk az adatokat
             printf("Datum: %s | Tipus: %s | Ar: %d Ft\n",
                     k->datum, k->tipus, k->ar);
             volt = 1;  /* rogzitjuk, hogy talaltunk legalabb egy bejegyzest */
@@ -127,13 +127,13 @@ void autoSzervizTortenet(Auto *autok, Javitas *javitasok, const char *rendSz) {
     }
 
     if (!volt) {
-        printf("Ehhez az autohoz meg nincs regisztralt javitas.\n");
+        printf("Ehhez az autohoz meg nincs regisztralt javitas.\n"); 
     }
 }
 
 void lejaroVizsgak(Auto *autok, const char *maiDatum) {
     int maiEv, maiHo, maiNap;
-    if (sscanf(maiDatum, "%d-%d-%d", &maiEv, &maiHo, &maiNap) != 3) {
+    if (sscanf(maiDatum, "%d-%d-%d", &maiEv, &maiHo, &maiNap) != 3) { //atadjuk a stringet, formatumot es a valtozokat amikbe elmentjuk az adatokat, 3 ha sikeres a beolvasas
         printf("Hibas datum formatum! (YYYY-MM-DD kell)\n");
         return;  /* ervenytelen bemeneti datum eseten kilepunk */
     }
@@ -142,7 +142,7 @@ void lejaroVizsgak(Auto *autok, const char *maiDatum) {
 
     for (Auto *p = autok; p != NULL; p = p->kov) {
         int ev, ho, nap;
-        if (sscanf(p->vizsgaErv, "%d-%d-%d", &ev, &ho, &nap) != 3)
+        if (sscanf(p->vizsgaErv, "%d-%d-%d", &ev, &ho, &nap) != 3) //nezzuk az elemek vizsga ervenyesseget
             continue;  /* hibas adatbazis-bejegyzes eseten atugorjuk az autot */
 
         if (ev < maiEv ||

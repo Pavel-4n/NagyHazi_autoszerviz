@@ -30,8 +30,7 @@ int main()
 		printf("Valassz egy menupontot: \n");
 		scanf("%d", &menuVal);
 
-		while (getchar() != '\n')
-			;
+		while (getchar() != '\n');
 
 		switch (menuVal)
 		{
@@ -42,7 +41,7 @@ int main()
 			char telSz[50];
 
 			printf("ugyfel neve: ");
-			scanf(" %99[^\n]", nev); /* szokozoket is tartalmazo nev beolvasasa biztonsagosan */
+			scanf(" %99[^\n]", nev); /* enterig olvassuk be, szokozoket is tartalmazo nev beolvasasa biztonsagosan */
 
 			if (ugyfelKeres(ugyfelek, nev) != NULL)
 			{
